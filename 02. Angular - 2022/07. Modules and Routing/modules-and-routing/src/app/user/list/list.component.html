@@ -1,0 +1,10 @@
+<button (click)="reloadUsersHandler()">Reload users</button>
+
+<div id="user-list-container">
+
+    <div *ngFor="let user of userList">
+        <p>Email: {{user.email}}</p>
+        <p>Website: {{user.website}}</p>
+    </div>
+
+</div>
