@@ -2,7 +2,7 @@
 
 <div id="user-list-container">
 
-    <div *ngFor="let user of userList">
+    <div *ngFor="let user of userList" [routerLink]="['/user', 'detail', user.id]">
         <p>Email: {{user.email}}</p>
         <p>Website: {{user.website}}</p>
     </div>
