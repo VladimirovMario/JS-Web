@@ -15,6 +15,7 @@ export class ThemeListComponent implements OnInit {
 
   constructor(private apiService: ApiService) {}
 
+  // TODO The themes in the main section should be descending sorted by the subscribers.
   ngOnInit(): void {
     this.apiService.loadThemes().subscribe({
       next: (value) => {
