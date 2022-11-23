@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { environment } from '../environments/environment';
-import { ITheme } from './interfaces/theme';
-import { IPost } from './interfaces/posts';
+import { ITheme, IPost } from './shared/interfaces';
 
 const apiURL = environment.apiURL;
 
@@ -17,7 +17,7 @@ export class ApiService {
   }
 
   loadPosts(limit?: number) {
-    return this.httpClient.get<IPost[]>(`${apiURL}/posts${limit ? `?limit=${limit}` : ``}`
-    );
+    return this.httpClient.get<IPost[]>
+    (`${apiURL}/posts${limit ? `?limit=${limit}` : ``}`);
   }
 }

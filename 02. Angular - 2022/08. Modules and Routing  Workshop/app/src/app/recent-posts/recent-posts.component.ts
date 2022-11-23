@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ApiService } from '../api.service';
-import { IPost } from '../interfaces/posts';
+import { IPost } from '../shared/interfaces';
 
 @Component({
   selector: 'app-recent-posts',
@@ -8,6 +9,7 @@ import { IPost } from '../interfaces/posts';
   styleUrls: ['./recent-posts.component.scss'],
 })
 export class RecentPostsComponent implements OnInit {
+  
   posts: IPost[] | null = null;
   errorFetchingData: boolean = false;
   message!: string;
