@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, DoCheck {
+  // get isLoggedIn() {
+  //   return this.authService.isLoggedIn;
+  // }
 
-  constructor() { }
+  isLoggedIn = false;
 
-  ngOnInit(): void {
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {}
+
+  ngDoCheck(): void {
+    this.isLoggedIn = this.authService.isLoggedIn;
   }
-
 }
