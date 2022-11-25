@@ -9,17 +9,9 @@ import { SharedModule } from './shared/shared.module';
 import { ThemeModule } from './theme/theme.module';
 
 import { AppComponent } from './app.component';
-import { RecentPostsComponent } from './recent-posts/recent-posts.component';
-import { MainComponent } from './main/main.component';
-
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    RecentPostsComponent,
-    MainComponent,
-    
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
