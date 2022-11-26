@@ -11,11 +11,8 @@ export class AuthActivate implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
-    | boolean
-    | UrlTree
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree> {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
+  : | boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 
     // For parent roots    
     // const loginRequired = route.data['loginRequired'];
@@ -29,9 +26,11 @@ export class AuthActivate implements CanActivate {
       return true;
     }
 
-    // TODO check if return url works 
-    const returnUrl = route.url.map(u => u.path).join('/')
-    
+    // TODO Test returnUrl with edge cases 
+    const parent = route.url.map(u => u.path).join('/')
+    const child = route.firstChild?.url.map(u => u.path).join('/')
+    const returnUrl = child? parent + `/${child}` : parent 
+    // Redirection part is in Login
     return this.router.createUrlTree(['/auth/login'], {queryParams: {returnUrl}});
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { AuthService } from '../auth.service';
 
@@ -10,15 +10,22 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private authService: AuthService) {
-
-
-    // this.authService.user = {
-    //   username: 'John',
-    // } as any;
-
-    // this.router.navigate(['/']);
-  }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService) {}
 
   ngOnInit(): void {}
+
+  loginHandler(): void {
+    this.authService.user = {
+      username: 'John',
+    } as any;
+
+    // Check auth.activate.ts
+    // This is the url that the user was before login
+    const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/'
+
+    this.router.navigate([returnUrl]);
+  }
 }
