@@ -4,11 +4,15 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
+import { createMyValueProvider } from './app/providers';
+
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+const MyValueProvider = createMyValueProvider((window as any).test);
+
+platformBrowserDynamic([MyValueProvider]).bootstrapModule(AppModule)
   .catch(err => console.error(err));
 
 /*
