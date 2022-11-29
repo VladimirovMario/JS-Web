@@ -9,6 +9,9 @@ import { MyValueInjectionToken } from './providers';
 export class AppComponent {
   title = 'directives-and-forms';
 
+
+  myIfValue: boolean = true
+
   constructor(@Inject(MyValueInjectionToken) myValue: string){
     console.log(myValue);
   }

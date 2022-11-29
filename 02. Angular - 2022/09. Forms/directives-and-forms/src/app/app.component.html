@@ -1,1 +1,51 @@
-<div appMyRouterLink>HELLO WORLD</div>
+<nav>
+    <a routerLink="/login">Login</a>
+    <a routerLink="/register">Register</a>
+</nav>
+<router-outlet></router-outlet>
+
+
+
+
+
+<!-- my-router-link.directive.ts -->
+<!-- <ng-template #myTemplateOutlet>HELLO AGAIN</ng-template>
+<div appMyRouterLink="/path/for/studding" [template]="myTemplateOutlet">HELLO WORLD</div>
+
+
+<div *ngIf="true">
+    123
+</div>
+
+<ng-template [ngIf]="true">
+    <div>
+        123
+    </div>
+</ng-template> -->
+
+
+
+
+<!-- my-if.directive.ts -->
+<!-- <button (click)="myIfValue = !myIfValue">Toggle my if value</button> -->
+
+<!-- first -->
+<!-- <div *appMyIf="myIfValue">
+    My if directive is working (first example)
+</div> -->
+
+<!-- second -->
+<!-- <ng-template [appMyIf]="myIfValue" let-value="value" #refToMyIf="appMyIf">
+    <div>
+        My if directive is working (second example)
+        (Passing variable value:) {{value}}
+    </div>
+</ng-template> -->
+
+<!-- third -->
+<!-- <ng-template #tmp let-value="value" let-value1>
+    My separate template for myIf
+    (Passing variable value:) {{value}} - {{value1}}
+</ng-template>
+
+<ng-container [appMyIf]="myIfValue" [template]="tmp"></ng-container> -->
