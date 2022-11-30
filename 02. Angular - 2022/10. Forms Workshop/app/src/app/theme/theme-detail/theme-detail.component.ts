@@ -12,6 +12,7 @@ export class ThemeDetailComponent implements OnInit {
  theme: ITheme | null = null
 
   constructor(private activatedRoute: ActivatedRoute) {
+    // http://localhost:4200/theme/detail/5fa64a9f2183ce1728ff371a
     // TODO get real details in template
     // console.log('>>> From theme-detail.comp.ts>>>',this.activatedRoute.snapshot.data);
 
