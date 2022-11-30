@@ -6,7 +6,7 @@
         <!-- email input -->
         <p class="field field-icon">
             <label for="email"><span><i class="fas fa-envelope"></i></span></label>
-            <input #emailInput="ngModel" ngModel required [appEmailValidator]="['bg','com']"
+            <input #emailInput="ngModel" ngModel required [appEmailValidator]="appEmailDomains"
             class="input-error" type="email" name="email" id="email" placeholder="john.doe@gmail.com">
         </p>
         

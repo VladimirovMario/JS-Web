@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { appEmailDomains } from 'src/app/shared/constants';
 
 import { AuthService } from '../auth.service';
 
@@ -10,6 +11,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+
+  appEmailDomains = appEmailDomains
 
   // @ViewChild(
   //   // 'loginForm',
