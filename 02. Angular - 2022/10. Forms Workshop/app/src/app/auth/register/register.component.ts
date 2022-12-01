@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   registerForm = this.formBuilder.group({
     username: ['', [Validators.required, Validators.minLength(5)]],
     email: ['', [Validators.required, customEmailValidator(appEmailDomains)]],
-    ['select-tel']: ['00359', []],
+    prefix: ['00359', []],
     tel: ['', []],
     pass: this.formBuilder.group(
       {
@@ -31,4 +31,11 @@ export class RegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {}
+
+  registerHandler(){
+    if (this.registerForm.invalid) { return; }
+    // console.log(this.registerForm.value);
+    // {username: 'Johny', email: 'john.doe@gmail.com',
+    //  prefix: '00359', tel: '885 888 888', pass: {password: '123456', rePassword: '123456'}}
+  }
 }

@@ -1,10 +1,11 @@
-<form class="register" [formGroup]="registerForm">
+<form class="register" [formGroup]="registerForm" (ngSubmit)="registerHandler()">
 
     <fieldset>
         <h2>Registration Form</h2>
 
-        
+        <!-- To see data from the fields when working on the template -->
         <!-- {{registerForm.value | json}} -->
+        
         <!-- username -->
         <p class="field field-icon">
             <label for="username"><span><i class="fas fa-user"></i></span></label>
@@ -29,12 +30,12 @@
         </p>
 
         <!-- email errors-->
-        {{registerForm.get('email')?.errors | json}}
-        <ng-container *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors">
-           <p class="error">
+        <!-- {{registerForm.get('email')?.errors | json}} -->
+        <ng-container *ngIf="registerForm.get('email')?.touched">
+           <p class="error"  *ngIf="registerForm.get('email')?.errors?.['required']">
                Email is required!
            </p>
-           <p class="error">
+           <p class="error" *ngIf="registerForm.get('email')?.errors?.['customEmailValidator']">
                Email is not valid!
            </p>
        </ng-container>
@@ -44,7 +45,7 @@
         <!-- telephone -->
         <p class="field field-icon">
             <label for="tel"><span><i class="fas fa-phone"></i></span></label>
-            <select  formControlName="select-tel" name="select-tel" id="select-tel" class="tel">
+            <select formControlName="prefix" id="select-tel" class="tel">
                 <option value="00359">+359</option>
                 <option value="00358">+358</option>
 
@@ -65,13 +66,15 @@
         
         
         <!-- password errors-->
-        {{registerForm.get('pass')?.errors | json}}
-        <p class="error" >
-            Password is required!
-        </p>
-        <p class="error">
-            Password must be at least 5 characters!
-        </p>
+        <!-- {{registerForm.get('pass')?.get('password')?.errors | json}} -->
+        <ng-container *ngIf="registerForm.get('pass')?.get('password')?.touched">
+            <p class="error" *ngIf="registerForm.get('pass')?.get('password')?.errors?.['required']">
+                Password is required!
+            </p>
+            <p class="error" *ngIf="registerForm.get('pass')?.get('password')?.errors?.['minlength']">
+                Password must be at least 5 characters!
+            </p>
+        </ng-container>
 
 
         <!-- rePassword -->
@@ -90,8 +93,8 @@
        </ng-container>
 
 
-        <button >Create Account</button>
-
+        <button [disabled]=registerForm.invalid>Create Account</button>
+        
 
 
         <p class="text-center">
