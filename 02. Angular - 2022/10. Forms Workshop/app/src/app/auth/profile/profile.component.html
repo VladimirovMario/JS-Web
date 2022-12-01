@@ -1,16 +1,98 @@
-<div class="profile"><img src="/assets/img/profile.png" alt="default user">
-    <h3>User Info:</h3>
-    <div class="flex">
-        <p>Username: </p>
-        <p>Johny</p>
+<!-- user profile -->
+<ng-container *ngIf="!showEdit">
+    <div class="profile"><img src="/assets/img/profile.png" alt="default user">
+        <h3>User Info:</h3>
+        <div class="flex">
+            <p>Username: </p>
+            <p>{{user. username}}</p>
+        </div>
+        <div class="flex">
+            <p>Email: </p>
+            <p>{{user.email}}</p>
+        </div>
+        <div class="flex">
+            <p>Phone: </p>
+            <p>{{user.prefix}} {{user.tel}}</p>
+        </div>
+        <button class="edit-button" (click)="toggleEditMode()">Edit</button>
     </div>
-    <div class="flex">
-        <p>Email: </p>
-        <p>john.doe@gmail.com</p>
+</ng-container>
+
+
+
+<!-- user edit profile form -->
+<ng-container *ngIf="showEdit">
+    <div class="profile">
+        <img src="/assets/img/profile.png" alt="default user">
+        <h3>User Info:</h3>
+
+        <!-- To see data from the fields when working on the template -->
+        <!-- {{form.errors | json}} -->
+
+        <form [formGroup]="form" (ngSubmit)="saveProfile()">
+
+            <!-- username -->
+            <div class="flex">
+                <p>Username: </p>
+                <input
+                 formControlName="username"
+                  type="text" name="username" id="username" value="Johny">
+            </div>
+
+
+            <!-- username errors -->
+            <!-- {{form.get('username')?.errors | json}} -->
+            <ng-container *ngIf="form.get('username')?.touched">
+                <p class="error" *ngIf="form.get('username')?.errors?.['required']">
+                    Username is required!
+                </p>
+                <p class="error" *ngIf="form.get('username')?.errors?.['minlength']">
+                    Username must be at least 5 characters!
+                </p>
+            </ng-container>
+
+
+
+            <!-- email -->
+            <div class="flex">
+                <p>Email: </p>
+                <input formControlName="email"
+                 type="email" name="email" id="email" value="john.doe@gmail.com">
+            </div>
+
+             <!-- email errors-->
+            <!-- {{form.get('email')?.errors | json}} -->
+            <ng-container *ngIf="form.get('email')?.touched">
+                <p class="error"  *ngIf="form.get('email')?.errors?.['required']">
+                    Email is required!
+                </p>
+                <p class="error" *ngIf="form.get('email')?.errors?.['customEmailValidator']">
+                    Email is not valid!
+                </p>
+            </ng-container>
+
+
+
+            <!-- telephone -->
+            <div class="flex">
+                <p>Phone: </p>
+                <div>
+                    <select formControlName="prefix" name="select-tel" id="select-tel" class="tel">
+                        <option value="00359">+359</option>
+                        <option value="00358">+358</option>
+                    </select>
+                    <input formControlName="tel" type="text" name="tel" id="tel" value="885 888 888">
+                </div>
+            </div>
+
+
+            
+            <button class="red-button" (click)="cancelEditMode()">Cancel</button>
+            <button class="green-button" [disabled]="form.invalid">Save</button>
+
+           
+        </form>
+
+
     </div>
-    <div class="flex">
-        <p>Phone: </p>
-        <p>+359 885 888 888</p>
-    </div>
-    <button class="edit-button">Edit</button>
-</div>
+</ng-container>

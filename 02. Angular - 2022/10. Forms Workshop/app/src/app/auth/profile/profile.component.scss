@@ -48,13 +48,14 @@
     outline: none;
 }
 
-.flex > input, .flex > div {
+.flex>input,
+.flex>div {
     width: 55%;
     text-align: left;
     margin: .5em;
 }
 
-.flex > div > input {
+.flex>div>input {
     width: 77%;
 }
 
@@ -68,4 +69,9 @@
 
 .green-button {
     background-color: green;
+}
+
+p.error {
+    color: red;
+    padding-top: 0;
 }
