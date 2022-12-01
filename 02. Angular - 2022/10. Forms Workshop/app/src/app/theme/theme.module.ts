@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { ThemeRouterModule } from './theme-routing-module';
 import { SharedModule } from '../shared/shared.module';
@@ -18,7 +19,12 @@ import { RecentPostsComponent } from './recent-posts/recent-posts.component';
     MainComponent,
     RecentPostsComponent,
   ],
-  imports: [CommonModule, SharedModule, ThemeRouterModule],
+  imports: [
+    CommonModule, 
+    SharedModule, 
+    FormsModule, 
+    ThemeRouterModule
+  ],
   exports: [ThemeListComponent],
 })
 export class ThemeModule {}
