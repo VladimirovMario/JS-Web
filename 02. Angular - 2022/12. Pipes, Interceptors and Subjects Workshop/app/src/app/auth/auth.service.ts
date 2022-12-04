@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { IUser } from '../shared/interfaces';
@@ -7,15 +8,29 @@ import { IUser } from '../shared/interfaces';
 })
 export class AuthService {
 
-  user: IUser | null = {
-     username: 'John',
-     email: 'john.doe@gmail.com',
-     tel: '00359885885885'
-    } as any;
+  user: IUser | null = null;
 
   get isLoggedIn() {
     return this.user !== null;
   }
 
-  constructor() {}
+  constructor( private http: HttpClient ) {}
+
+  register(username: string, email: string, password: string , prefix?: string, tel?: string){
+    
+    return this.http.post<IUser>('/api/register', {username, email,  password, tel});
+  }
+
+  login( email: string,  password: string ) {
+     return this.http.post<IUser>('/api/login', { email, password });
+  }
+
+  logout(){
+    return this.http.post('/api/logout', {})
+  }
+
+  getProfile() {
+    return this.http.get<IUser>('/api/users/profile');
+  }
+    
 }

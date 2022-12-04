@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { appEmailDomains } from 'src/app/shared/constants';
-import { customEmailValidator, sameValueGroupValidator } from 'src/app/shared/validators';
+import { customEmailValidator, sameValueGroupValidator} from 'src/app/shared/validators';
+
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
+
 export class RegisterComponent implements OnInit {
-
-
+  // Validations
   registerForm = this.formBuilder.group({
     username: ['', [Validators.required, Validators.minLength(5)]],
     email: ['', [Validators.required, customEmailValidator(appEmailDomains)]],
@@ -23,19 +26,40 @@ export class RegisterComponent implements OnInit {
         rePassword: ['', []],
       },
       {
-        validators: [sameValueGroupValidator('password', 'rePassword')]
+        validators: [sameValueGroupValidator('password', 'rePassword')],
       }
     ),
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  //Error message
+   message!: string;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
-  registerHandler(){
+  // Registration form
+  registerHandler() {
     if (this.registerForm.invalid) { return; }
     // console.log(this.registerForm.value);
-    // {username: 'Johny', email: 'john.doe@gmail.com',
-    //  prefix: '00359', tel: '885 888 888', pass: {password: '123456', rePassword: '123456'}}
+
+    const { username, email, pass: { password } = {}, prefix, tel } = this.registerForm.value;
+
+    this.authService.register(username!, email!, password!, prefix!, tel! || undefined)
+    .subscribe({
+      next: (user) => {
+        this.authService.user = user;
+        this.router.navigate(['/theme/list']);        
+      },
+      error: (err) => {
+        this.message = err.message;
+        console.error('Error from register', err);
+      }
+
+    });
   }
 }

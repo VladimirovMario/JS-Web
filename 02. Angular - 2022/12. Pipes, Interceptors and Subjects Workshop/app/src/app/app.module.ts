@@ -9,9 +9,11 @@ import { SharedModule } from './shared/shared.module';
 import { ThemeModule } from './theme/theme.module';
 
 import { AppComponent } from './app.component';
+import { appInterceptorProvider } from './app.interceptor';
+import { AuthenticateComponent } from './authenticate/authenticate.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AuthenticateComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -21,7 +23,7 @@ import { AppComponent } from './app.component';
     CoreModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [appInterceptorProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
