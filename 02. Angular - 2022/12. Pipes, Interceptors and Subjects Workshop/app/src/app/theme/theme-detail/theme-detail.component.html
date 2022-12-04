@@ -1,12 +1,13 @@
 <div class="container">
     <!-- theme content  -->
     <div class="theme-content">
+
         <!-- theme-title  -->
         <div class="theme-title">
             <div class="theme-name-wrapper">
                 <div class="theme-name">
                     <h2>{{theme?.themeName}}</h2>
-                    <!-- {{theme | json}} -->
+                    <!-- {{theme?.posts| json}} -->
                     <p>Date: <time>{{theme?.created_at}}</time></p>
                 </div>
                 <div class="subscribers">
@@ -16,8 +17,15 @@
                 </div>
             </div>
         </div>
+
+
         <!-- comment  -->
-        <div class="comment">
+
+        <ng-container *ngFor="let comment of theme?.posts" >
+
+            <!-- {{comment | json}} -->
+
+        <div class="comment" >
             <header class="header">
                 <p><span>David</span> posted on <time>2020-10-10 12:08:28</time></p>
             </header>
@@ -40,24 +48,9 @@
                 <p><span>5</span> likes</p>
             </div>
         </div>
-        <div class="comment">
-            <header class="header">
-                <p><span>Mark</span> posted on <time>2020-10-10 14:28:11</time></p>
-            </header>
-            <div class="comment-main">
-                <div class="userdetails">
-                    <img src="/assets/img/profile.png" alt="avatar">
-                </div>
-                <div class="post-content">
-                    <p>Lorem ipsum dolor sit amet consectetur </p>
-                </div>
-            </div>
-            <div class="footer">
-                <!-- <i class="fas fa-thumbs-up"></i>
-                <i class="fas fa-thumbs-down"></i> -->
-                <p><span>3</span> likes</p>
-            </div>
-        </div>
+    </ng-container>
+
+
         <div class="answer-comment">
             <p><span>currentUser</span> comment:</p>
             <div class="answer">
