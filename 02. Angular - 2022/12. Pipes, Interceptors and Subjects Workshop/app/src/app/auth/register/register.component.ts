@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(username!, email!, password!, prefix!, tel! || undefined)
     .subscribe({
       next: (user) => {
-        this.authService.user = user;
+        
         this.router.navigate(['/theme/list']);        
       },
       error: (err) => {

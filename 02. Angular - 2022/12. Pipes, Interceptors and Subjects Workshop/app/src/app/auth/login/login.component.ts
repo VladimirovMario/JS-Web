@@ -31,8 +31,10 @@ export class LoginComponent {
     .subscribe({
       next: (user) => {
         // console.log(user);
-        this.authService.user = user;
-        this.router.navigate(['/theme/list'])
+        
+        // this.router.navigate(['/theme/list']);
+          const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
+    this.router.navigate([returnUrl]);
       },
       error: (err) => {
         this.message = err.message;
@@ -42,7 +44,7 @@ export class LoginComponent {
     });
     
     // Check auth.activate.ts
-    // This is the url that the user was before login
+    // This is the url that the user was before login (Don't work after last changes)
     // const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
     // this.router.navigate([returnUrl]);
   }
