@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ThemeService } from '../theme.service';
 
 @Component({
   selector: 'app-new-theme',
@@ -7,8 +9,8 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./new-theme.component.scss'],
 })
 export class NewThemeComponent implements OnInit {
-
-  constructor() {}
+  
+  constructor(private themeService: ThemeService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -17,7 +19,10 @@ export class NewThemeComponent implements OnInit {
       return;
     }
 
-    console.log(form.value);
-    // {themeName: 'Angular', postText: 'The Angular course is very interesting.'}
+    const { themeName, postText } = form.value;
+
+    this.themeService.createTheme(themeName, postText).subscribe(() => {
+      this.router.navigate(['/theme/list']);
+    });
   }
 }
