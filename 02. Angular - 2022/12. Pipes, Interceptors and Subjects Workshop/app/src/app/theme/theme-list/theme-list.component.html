@@ -17,7 +17,7 @@
 
                     <div class="columns">
                         <div>
-                            <p>Date: <time>{{theme.created_at}}</time></p>
+                            <p>Date: <time>{{theme.created_at | date:'medium'}}</time></p>
                             <div class="nick-name">
                                 <p>Username: <span>{{theme.userId.username}}</span></p>
                             </div>
