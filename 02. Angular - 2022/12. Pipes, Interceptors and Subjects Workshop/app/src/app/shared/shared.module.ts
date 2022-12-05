@@ -5,13 +5,15 @@ import { LoaderComponent } from './loader/loader.component';
 import { WelcomeMessageComponent } from './welcome-message/welcome-message.component';
 import { RouterModule } from '@angular/router';
 import { EmailValidatorDirective } from './validators/email-validator.directive';
+import { ShortenPipe } from './shorten.pipe';
 
 
 @NgModule({
   declarations: [
     LoaderComponent,
     WelcomeMessageComponent,
-    EmailValidatorDirective
+    EmailValidatorDirective,
+    ShortenPipe
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { EmailValidatorDirective } from './validators/email-validator.directive'
   exports: [
     LoaderComponent,
     WelcomeMessageComponent,
-    EmailValidatorDirective
+    EmailValidatorDirective,
+    ShortenPipe
   ]
 })
 export class SharedModule { }
