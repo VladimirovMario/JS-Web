@@ -21,12 +21,12 @@ export class ThemeListComponent implements OnInit {
     this.apiService.loadThemes().subscribe({
       next: (value) => {
         this.themes = value;
-        console.log(value);
+        // console.log(value);
       },
       error: (err) => {
         this.errorFetchingData = true;
-        this.message = err.message;
-        console.error(err);
+        this.message = err;
+        console.error(this.message);
       },
       complete: () => {
         console.log('Observer got a complete notification');

@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { HomeComponent } from './core/home/home.component';
+import { ErrorComponent } from './core/error/error.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
     path: 'not-found',
     component: PageNotFoundComponent,
     title: 'Not Found',
+  },
+  {
+    path: 'error',
+    component: ErrorComponent
   },
   {
     path: '**',

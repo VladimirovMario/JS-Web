@@ -11,6 +11,8 @@ import { ThemeModule } from './theme/theme.module';
 import { AppComponent } from './app.component';
 import { appInterceptorProvider } from './app.interceptor';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
+import { API_ERROR } from './shared/constants';
+import { BehaviorSubject } from 'rxjs';
 
 @NgModule({
   declarations: [AppComponent, AuthenticateComponent],
@@ -23,7 +25,13 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
     CoreModule,
     SharedModule,
   ],
-  providers: [appInterceptorProvider],
+  providers: [
+    appInterceptorProvider,
+    {
+      provide: API_ERROR,
+      useValue: new BehaviorSubject(null)
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
