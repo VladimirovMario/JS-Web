@@ -1,5 +1,5 @@
 import { Injectable, NgModule } from '@angular/core';
-import {RouterModule, RouterStateSnapshot, Routes, TitleStrategy} from '@angular/router';
+import {PreloadAllModules, RouterModule, RouterStateSnapshot, Routes, TitleStrategy} from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 
@@ -24,6 +24,14 @@ const routes: Routes = [
     component: ErrorComponent
   },
   {
+    path: 'auth',
+    loadChildren: ()=> import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: 'theme',
+    loadChildren: ()=> import('./theme/theme.module').then(m => m.ThemeModule)
+  },
+  {
     path: '**',
     redirectTo: '/not-found',
   },
@@ -46,7 +54,7 @@ export class TemplatePageTitleStrategy extends TitleStrategy {
 }
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule],
   providers: [{ provide: TitleStrategy, useClass: TemplatePageTitleStrategy }],
 })
