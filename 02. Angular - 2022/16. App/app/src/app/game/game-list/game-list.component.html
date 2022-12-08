@@ -1,4 +1,3 @@
-<p>game-list works!</p>
 <section id="catalog-section" class="spaced">
     <h1 class="item">Accommodation</h1>
 
@@ -20,123 +19,40 @@
         </form>
     </main>
 
-    
-        <app-loader *ngIf="isLoading"></app-loader>
-    
-        <ng-container *ngIf="!isLoading">
 
-               <!-- Catalog Card  -->
-    <ul class="catalog cards">
-        <li class="item">
-            <header class="pad-med">
-                <h2>name</h2>
-            </header>
-            <main class="align-center">
-                <img class="img-thumb" src="../../../assets/img/ps4/pngwing.com.png">
-            </main>
-            <footer class="align-center pad-med">
-                <p>Location: city</p>
-                <p>Price: price€</p>
-                <a class="action" routerLink="/catalog/ID">See details</a>
-            </footer>
-        </li>
-    </ul>
+    <app-loader *ngIf="isLoading"></app-loader>
+    <ng-container *ngIf="!isLoading">
 
-         <!-- Catalog Card  -->
-         <ul class="catalog cards">
-            <li class="item">
+
+        <!-- Catalog Card  -->
+        <ul *ngFor="let game of games; let i = index" [attr.data-index]="i" class="catalog cards">
+            <li *ngIf="games?.length" class="item">
                 <header class="pad-med">
-                    <h2>name</h2>
+                    <h2>{{game.title}}</h2>
                 </header>
                 <main class="align-center">
-                    <img class="img-thumb" src="../../../assets/img/PS4/pngwing.com.png">
+                    <img class="img-thumb" src="{{game.imageUrl}}">
                 </main>
                 <footer class="align-center pad-med">
-                    <p>Location: city</p>
-                    <p>Price: price€</p>
-                    <a class="action" routerLink="/catalog/ID">See details</a>
-                </footer>
-            </li>
-        </ul>
-
-             <!-- Catalog Card  -->
-    <ul class="catalog cards">
-        <li class="item">
-            <header class="pad-med">
-                <h2>name</h2>
-            </header>
-            <main class="align-center">
-                <img class="img-thumb" src="../../../assets/img/PS4/pngwing.com.png">
-            </main>
-            <footer class="align-center pad-med">
-                <p>Location: city</p>
-                <p>Price: price€</p>
-                <a class="action" routerLink="/catalog/ID">See details</a>
-            </footer>
-        </li>
-    </ul>
-
-         <!-- Catalog Card  -->
-         <ul class="catalog cards">
-            <li class="item">
-                <header class="pad-med">
-                    <h2>name</h2>
-                </header>
-                <main class="align-center">
-                    <img class="img-thumb" src="../../../assets/img/PS4/pngwing.com.png">
-                </main>
-                <footer class="align-center pad-med">
-                    <p>Location: city</p>
-                    <p>Price: price€</p>
-                    <a class="action" routerLink="/catalog/ID">See details</a>
+                    <p>Genre: {{game.genre}}</p>
+                    <p>Price: {{game.price}}€</p>
+                    <a class="action" routerLink="/game/detail/{{game._id}}">See details</a>
                 </footer>
             </li>
         </ul>
 
 
-    <ul class="catalog cards">
-        <li class="item">
-            <header class="pad-med">
-                <h2>name</h2>
-            </header>
-            <main class="align-center">
-                <img class="img-thumb" src="../../../assets/img/PS4/pngwing.com (2).png">
-            </main>
-            <footer class="align-center pad-med">
-                <p>Location: city</p>
-                <p>Price: price€</p>
-                <a class="action" routerLink="/catalog/ID">See details</a>
-            </footer>
-        </li>
-    </ul>
-
-
-    <ul class="catalog cards">
-        <li class="item">
-            <header class="pad-med">
-                <h2>name</h2>
-            </header>
-            <main class="align-center">
-                <img class="img-thumb" src="../../../assets/img/PS4/pngwing.com (2).png">
-            </main>
-            <footer class="align-center pad-med">
-                <p>Location: city</p>
-                <p>Price: price€</p>
-                <a class="action" routerLink="/catalog/ID">See details</a>
-            </footer>
-        </li>
-    </ul>
-            
-            
-            <!-- Nothing has been listed yet -->
-            
-            <!-- <main class="item pad-large align-center">
+        <!-- Nothing has been listed yet -->
+        <ng-container *ngIf="!games?.length">
+            <main class="item pad-large align-center">
                 <p>Nothing has been listed yet. Be the first!</p>
                 <div>
-                    <a class="action" routerLink="/create">Host Accommodation</a>
+                    <a class="action" routerLink="/game/create">Create</a>
                 </div>
-            </main> -->
-            
+            </main>
         </ng-container>
+
+        
+    </ng-container>
 
 </section>

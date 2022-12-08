@@ -13,14 +13,6 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'catalog',
-    component: MainComponent,
-  },
-  {
-    path: 'create',
-    component: NewGameComponent,
-  },
-  {
     path: 'not-found',
     component: PageNotFoundComponent,
   },

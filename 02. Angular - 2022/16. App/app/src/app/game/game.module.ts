@@ -1,23 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { GameRouterModule } from './game-routing-module'
 import { GameListComponent } from './game-list/game-list.component';
 import { MainComponent } from './main/main.component';
 import { SharedModule } from '../shared/shared.module';
 import { NewGameComponent } from './new-game/new-game.component';
 import { FormsModule } from '@angular/forms';
-
+import { GameDetailComponent } from './game-detail/game-detail.component';
 
 
 @NgModule({
   declarations: [
     GameListComponent,
     MainComponent,
-    NewGameComponent
+    NewGameComponent,
+    GameDetailComponent
   ],
   imports: [
     CommonModule, // For structure directives (ng if, ng for)
     SharedModule,
     FormsModule,
+    GameRouterModule
   ],
   exports: [
     MainComponent
