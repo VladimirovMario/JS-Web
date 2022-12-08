@@ -25,7 +25,7 @@ const Game = model("Game", gameSchema);
 
 module.exports = Game;
 
-/**Post
+/**Game
 [x] Title - string (required),
 [x] Keyword - string (required),
 [x] Location - string (required),
