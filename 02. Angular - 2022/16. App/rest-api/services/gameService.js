@@ -9,7 +9,7 @@ async function createGame(game) {
 }
 
 async function getById(id) {
-  return Game.findById(id).lean();
+  return Game.findById(id);
 }
 
 async function deleteById(id) {
