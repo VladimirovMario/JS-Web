@@ -12,7 +12,7 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-
+// TODO remove the service
   loadFirstData (){
    return this.httpClient.get(`${apiUrl}/game`)
   }
