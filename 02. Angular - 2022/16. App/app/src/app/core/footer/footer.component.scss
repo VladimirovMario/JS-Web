@@ -1,0 +1,11 @@
+// html body app-root div#page-content app-footer footer{
+html body app-root div#page-content app-footer footer {
+    // #page-content>footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+    text-align: center;
+    font-weight: bold;
+}

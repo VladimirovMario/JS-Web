@@ -1,0 +1,142 @@
+<p>game-list works!</p>
+<section id="catalog-section" class="spaced">
+    <h1 class="item">Accommodation</h1>
+
+    <!-- SEARCH FORM -->
+    <main class="item pad-large align-center">
+        <form class="layout left large" method="get">
+            <div class="col aligned">
+                <label><span>Terms:</span><input name="search" placeholder="Search..." value=""></label>
+                <label><span>Location:</span><input name="city" placeholder="Enter City..." value=""></label>
+            </div>
+
+            <div class="col aligned">
+                <label><span>From price:</span><input type="number" name="fromPrice" min="1" max="1000"
+                        value=""></label>
+                <label><span>To price:</span><input type="number" name="toPrice" min="1" max="1000" value=""></label>
+            </div>
+
+            <label><input class="action" type="submit" value="Search"></label>
+        </form>
+    </main>
+
+    
+        <app-loader *ngIf="isLoading"></app-loader>
+    
+        <ng-container *ngIf="!isLoading">
+
+               <!-- Catalog Card  -->
+    <ul class="catalog cards">
+        <li class="item">
+            <header class="pad-med">
+                <h2>name</h2>
+            </header>
+            <main class="align-center">
+                <img class="img-thumb" src="../../../assets/img/ps4/pngwing.com.png">
+            </main>
+            <footer class="align-center pad-med">
+                <p>Location: city</p>
+                <p>Price: price€</p>
+                <a class="action" routerLink="/catalog/ID">See details</a>
+            </footer>
+        </li>
+    </ul>
+
+         <!-- Catalog Card  -->
+         <ul class="catalog cards">
+            <li class="item">
+                <header class="pad-med">
+                    <h2>name</h2>
+                </header>
+                <main class="align-center">
+                    <img class="img-thumb" src="../../../assets/img/PS4/pngwing.com.png">
+                </main>
+                <footer class="align-center pad-med">
+                    <p>Location: city</p>
+                    <p>Price: price€</p>
+                    <a class="action" routerLink="/catalog/ID">See details</a>
+                </footer>
+            </li>
+        </ul>
+
+             <!-- Catalog Card  -->
+    <ul class="catalog cards">
+        <li class="item">
+            <header class="pad-med">
+                <h2>name</h2>
+            </header>
+            <main class="align-center">
+                <img class="img-thumb" src="../../../assets/img/PS4/pngwing.com.png">
+            </main>
+            <footer class="align-center pad-med">
+                <p>Location: city</p>
+                <p>Price: price€</p>
+                <a class="action" routerLink="/catalog/ID">See details</a>
+            </footer>
+        </li>
+    </ul>
+
+         <!-- Catalog Card  -->
+         <ul class="catalog cards">
+            <li class="item">
+                <header class="pad-med">
+                    <h2>name</h2>
+                </header>
+                <main class="align-center">
+                    <img class="img-thumb" src="../../../assets/img/PS4/pngwing.com.png">
+                </main>
+                <footer class="align-center pad-med">
+                    <p>Location: city</p>
+                    <p>Price: price€</p>
+                    <a class="action" routerLink="/catalog/ID">See details</a>
+                </footer>
+            </li>
+        </ul>
+
+
+    <ul class="catalog cards">
+        <li class="item">
+            <header class="pad-med">
+                <h2>name</h2>
+            </header>
+            <main class="align-center">
+                <img class="img-thumb" src="../../../assets/img/PS4/pngwing.com (2).png">
+            </main>
+            <footer class="align-center pad-med">
+                <p>Location: city</p>
+                <p>Price: price€</p>
+                <a class="action" routerLink="/catalog/ID">See details</a>
+            </footer>
+        </li>
+    </ul>
+
+
+    <ul class="catalog cards">
+        <li class="item">
+            <header class="pad-med">
+                <h2>name</h2>
+            </header>
+            <main class="align-center">
+                <img class="img-thumb" src="../../../assets/img/PS4/pngwing.com (2).png">
+            </main>
+            <footer class="align-center pad-med">
+                <p>Location: city</p>
+                <p>Price: price€</p>
+                <a class="action" routerLink="/catalog/ID">See details</a>
+            </footer>
+        </li>
+    </ul>
+            
+            
+            <!-- Nothing has been listed yet -->
+            
+            <!-- <main class="item pad-large align-center">
+                <p>Nothing has been listed yet. Be the first!</p>
+                <div>
+                    <a class="action" routerLink="/create">Host Accommodation</a>
+                </div>
+            </main> -->
+            
+        </ng-container>
+
+</section>
