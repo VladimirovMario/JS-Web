@@ -16,8 +16,8 @@ export class ApiService {
   loadFirstData (){
    return this.httpClient.get(`${apiUrl}/game`)
   }
-  loadFurniture (){
-    return this.httpClient.get(`${apiUrl}/catalog`)
+  loadIdTest (id : string){
+    return this.httpClient.get(`${apiUrl}/catalog/` + id)
    }
 
 }
