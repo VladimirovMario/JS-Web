@@ -5,7 +5,7 @@ const userSchema = new Schema({
     email: { type: String, required: true, unique: true },
     hashedPassword: { type: String, required: true, minlength: [3, 'Password REST'] },
     username: { type: String, required: true, unique: true, minlength: [3, 'Username REST']},
-    // tel: {type: String },
+    tel: {type: String , default: ''},
     
     // themes: { type: [ObjectId], default: [], ref: "Theme" },     
     // posts: { type: [ObjectId], default: [], ref: "Post" }

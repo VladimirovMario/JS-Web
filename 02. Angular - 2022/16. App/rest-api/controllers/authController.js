@@ -5,11 +5,9 @@ const { body, validationResult } = require("express-validator");
 const { register, login, logout } = require("../services/userService");
 const { parseError } = require("../util/parser");
 
-authController.post(
-  "/register",
+authController.post("/register",
   body("email").isEmail().withMessage("Invalid email"),
-  body("password")
-    .isLength({ min: 3 })
+  body("password").isLength({ min: 3 })
     .withMessage("Password must be at least 3 characters long"),
 
   async (req, res) => {
