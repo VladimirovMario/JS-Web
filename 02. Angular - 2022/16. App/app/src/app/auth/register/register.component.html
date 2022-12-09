@@ -5,16 +5,32 @@
 
 
             <form class="layout left large" [formGroup]="form" (ngSubmit)="registerHandler()">
+                
                 <!-- TODO get errors -->
-                <div class="error-box">
-                    <p>Error</p>
-                </div>
-                    
-                <!-- To see data from the fields when working on the template -->
-                <!-- {{form.value | json}} -->
-                <!-- To see Error from the fields when working on the template -->
-                <!-- {{registerForm.get('email')?.errors | json}} -->
-    
+                <ng-container *ngIf="form.get('email')?.touched">
+                    <div class="error-box" *ngIf="form.get('email')?.errors?.['required']">
+                        <p>Email is required!</p>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="form.get('username')?.touched">
+                    <div class="error-box" *ngIf="form.get('username')?.errors?.['required']">
+                        <p>Username is required!</p>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="form.get('tel')?.touched">
+                    <div class="error-box" *ngIf="form.get('tel')?.errors?.['required']">
+                        <p>Telephone is required!</p>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="form.get('password')?.touched">
+                    <div class="error-box" *ngIf="form.get('password')?.errors?.['required']">
+                        <p>Password is required!</p>
+                    </div>
+                </ng-container>
+
 
                 <div class="col aligned">
                     <!-- email -->
@@ -25,8 +41,8 @@
                     <label for="username"><span>Username:</span>
                         <input formControlName="username" type="text" name="username" placeholder="Peter">
                     </label>
-                     <!-- tel -->
-                     <label for="tel"><span>Telephone:</span>
+                    <!-- tel -->
+                    <label for="tel"><span>Telephone:</span>
                         <input formControlName="tel" type="text" placeholder="+359885888888">
                     </label>
                     <!-- passwords -->
@@ -37,22 +53,18 @@
                     <label for=""><span>Repeat:</span>
                         <input formControlName="rePassword" type="password" name="repass" placeholder="*****">
                     </label>
-                   
-                    
                 </div>
 
 
                 <div class="content pad-med align-center vertical">
-                    <div class="align-center">                        
-                        <button class="action" >For Test</button>
+                    <div class="align-center">
+                        <button class="action">For Test</button>
                         <!-- <button class="action" [disabled]=form.invalid>Sign Up</button> -->
                     </div>
                 </div>
 
-
-                
             </form>
         </main>
-        <footer>If you already have an account? <a href="/auth/login">Sign in</a></footer>
+        <footer>If you already have an account? <a routerLink="/auth/login">Sign in</a></footer>
     </div>
 </section>

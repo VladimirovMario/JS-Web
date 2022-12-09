@@ -39,9 +39,10 @@ export class GameListComponent implements OnInit {
     this.gameService.getAll().subscribe({
       next: (value) => {
         this.isLoading = false;
+
         this.games as any; 
         this.games = mockData as any
-        console.log(mockData);
+        console.log('form back end', value);
       },
       error: (err) => {
           console.error(err);

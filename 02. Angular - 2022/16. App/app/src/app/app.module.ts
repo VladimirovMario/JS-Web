@@ -9,12 +9,14 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 
 import { AppComponent } from './app.component';
+import { appInterceptorProvider } from './app.interseptor';
 
-// NgModules help organize an application into cohesive blocks of functionality
+
+
 @NgModule({
-  // Only declarables - (components, directives and pipes)
+  
   declarations: [AppComponent],
-  // Only @NgModule classes - integrated (HttpClientModule, BrowserModule) or custom made
+ 
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -24,8 +26,9 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     SharedModule,
   ],
-  providers: [], //providers - list of providers that can be injected using DI
-  //The providers array Register service providers and inject them into components
+  providers: [appInterceptorProvider], 
+
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,30 +1,21 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 import { environment } from 'src/environments/environment';
 import { IUser } from '../shared/interfaces';
-
+ 
 const apiUrl = environment.apiURL;
 
-// const headers = new HttpHeaders()
-// .set('content-type', 'application/json')
-// .set('x-functions-key', '');
-// headers.append('Access-Control-Allow-Origin', '*')
-// headers.append('Access-Control-Allow-Methods', 'HEAD, OPTIONS, GET, POST, PUT, DELETE');
-// headers.append('Access-Control-Allow-Headers', 'Content-Type, X-Authorization');
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
- 
-
-
-  register<IUser>(email: string, username: string, tel: string, password: string){
-    return this.httpClient.post<IUser>(`${apiUrl}/auth/register`, {email, username, tel, password})
+  register(email: string, username: string, tel: string, password: string){
+    return this.httpClient.post<IUser>(`/api/register`, {email, username, tel, password});
   }
 
+  login(email: string, password: string){
+    return this.httpClient.post<IUser>(`/api/login`, {email, password});
+  }
 }
