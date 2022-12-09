@@ -5,18 +5,21 @@ import {
   HttpRequest,
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
-import { Injectable, Provider } from '@angular/core';
+import { Inject, Injectable, Provider } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
+
+import { API_ERROR } from './shared/constants';
 const apiURL = environment.apiURL;
 
 // Automatically attach authentication information to requests
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
-  constructor() {}
 
+  // constructor( @Inject(API_ERROR)) {}
+  constructor( ) {}
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
