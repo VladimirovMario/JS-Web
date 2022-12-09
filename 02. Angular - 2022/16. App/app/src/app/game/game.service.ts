@@ -24,7 +24,6 @@ export class GameService {
   }
 
   create(title: string, genre: string , price: number, imageUrl: string, description: string) {
-    return this.httpClient.post(`${apiUrl}/game`,
-     {title, genre , price, imageUrl, description});
+    return this.httpClient.post(`${apiUrl}/game`, {title, genre , price, imageUrl, description});
   }
 }

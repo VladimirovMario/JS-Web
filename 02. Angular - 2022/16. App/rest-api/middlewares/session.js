@@ -3,6 +3,7 @@ const { parseToken } = require('../services/userService');
 
 module.exports = () => (req, res, next) => {
 
+    console.log(req.headers);
     const token = req.headers['x-authorization'];
     // const token = req.cookies.token;
 

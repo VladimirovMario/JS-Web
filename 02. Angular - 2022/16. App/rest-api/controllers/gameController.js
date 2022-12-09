@@ -15,10 +15,12 @@ gameController.get('/', async (req, res) => {
     }
     res.json(items);
 });
-
-gameController.post('/', hasUser(), async (req, res) => {
+// hasUser()
+gameController.post('/', async (req, res) => {
     try {
-        const data = Object.assign({ _ownerId: req.user._id }, req.body);
+        // const data = Object.assign({ _ownerId: req.user._id }, req.body);
+        const data =  req.body;
+
         const item = await createGame(data);
         res.json(item);
     } catch (err) {
@@ -32,12 +34,12 @@ gameController.get('/:id', async (req, res ) => {
     res.json(item);
 });
 
-
-gameController.put('/:id', hasUser(), async (req, res, next) => {
+// hasUser()
+gameController.put('/:id',  async (req, res, next) => {
     const item = await getById(req.params.id);
-    if (req.user._id != item._ownerId) {
-        return res.status(403).json({ message: 'You cannot modify this record' });
-    }
+    // if (req.user._id != item._ownerId) {
+    //     return res.status(403).json({ message: 'You cannot modify this record' });
+    // }
 
     try {
         const result = await updateById(req.params.id, req.body);
@@ -47,12 +49,12 @@ gameController.put('/:id', hasUser(), async (req, res, next) => {
         res.status(400).json({ message });
     }
 });
-
-gameController.delete('/:id', hasUser(), async (req, res) => {
+// hasUser(),
+gameController.delete('/:id',  async (req, res) => {
     const item = await getById(req.params.id);
-    if (req.user._id != item._ownerId) {
-        return res.status(403).json({ message: 'You cannot modify this record' });
-    }
+    // if (req.user._id != item._ownerId) {
+    //     return res.status(403).json({ message: 'You cannot modify this record' });
+    // }
 
     try {
         await deleteById(req.params.id);

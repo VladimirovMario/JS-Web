@@ -27,7 +27,7 @@ export class AppInterceptor implements HttpInterceptor {
         withCredentials: true,
         setHeaders: {
           'Content-Type': 'application/json',
-          Headers: 'x-authorization',
+          'Headers': 'x-authorization',
         },
       });
     }
