@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
       console.error("Passwords don't match");
     }
 
-    this.authService.register(email!, username!, tel!, password!).subscribe({
+    this.authService.register(email!, username!, tel!, password!, rePassword!).subscribe({
       next: (user) => {
         this.router.navigate(['/game/catalog']);
       },

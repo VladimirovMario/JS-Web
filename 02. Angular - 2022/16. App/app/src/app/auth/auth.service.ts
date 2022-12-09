@@ -11,11 +11,16 @@ const apiUrl = environment.apiURL;
 export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
-  register(email: string, username: string, tel: string, password: string){
-    return this.httpClient.post<IUser>(`/api/register`, {email, username, tel, password});
+  register(email: string, username: string, tel: string, password: string, rePassword: string){
+    return this.httpClient.post<IUser>(`/api/register`,
+     {email, username, tel, password, rePassword});
   }
 
   login(email: string, password: string){
     return this.httpClient.post<IUser>(`/api/login`, {email, password});
+  }
+
+  logout(){
+    return this.httpClient.post('/api/logout', {});
   }
 }

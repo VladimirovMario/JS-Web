@@ -1,9 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 
-const cookieParser = require("cookie-parser");
+// const cookieParser = require("cookie-parser");
+const  config = require('./middlewares/cors');
 
-const cors = require('./middlewares/cors');
 const authController = require('./controllers/authController');
 const dataController = require('./controllers/dataController');
 const trimBody = require('./middlewares/trimBody');
@@ -25,8 +26,11 @@ async function start() {
     const app = express();
 
     app.use(express.json());
-    app.use(cookieParser());
-    app.use(cors());
+    // app.use(cookieParser());
+    app.use(cors({
+        origin: config.origin,
+        credentials: true
+    }));
     app.use(trimBody());
     app.use(session());
 
@@ -34,7 +38,7 @@ async function start() {
         res.json({ message: 'REST service operational' });
     });
 
-    app.use('/api/users', authController);
+    app.use('/api', authController);
     app.use('/api/game', gameController);
     app.use('/api/catalog', dataController);
 
