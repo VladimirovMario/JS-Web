@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NewGameComponent } from './new-game/new-game.component';
 import { FormsModule } from '@angular/forms';
 import { GameDetailComponent } from './game-detail/game-detail.component';
+import { GameEditComponent } from './game-edit/game-edit.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { GameDetailComponent } from './game-detail/game-detail.component';
     GameListComponent,
     MainComponent,
     NewGameComponent,
-    GameDetailComponent
+    GameDetailComponent,
+    GameEditComponent
   ],
   imports: [
     CommonModule, // For structure directives (ng if, ng for)
