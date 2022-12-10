@@ -7,6 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ErrorComponent } from './error/error.component';
 
 
 
@@ -15,7 +16,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HeaderComponent,
     HomeComponent,
     FooterComponent,
-    PageNotFoundComponent,   
+    PageNotFoundComponent,
+    ErrorComponent,   
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ErrorComponent
   ]
 })
 export class CoreModule { }

@@ -2,7 +2,7 @@ const authController = require("express").Router();
 
 const { body, validationResult } = require("express-validator");
 
-const { register, login, logout } = require("../services/userService");
+const { register, login, logout, getProfileInfo } = require("../services/userService");
 const { parseError } = require("../util/parser");
 
 authController.post("/register",
@@ -54,7 +54,9 @@ authController.post("/login", async (req, res) => {
 
 ////////
 authController.get('/profile' , async (req, res,) => {
+  console.log('>>> From profile', req.user);
   try {
+    
     const token = await getProfileInfo(req.body.user);
     res.json(token);
     // res.cookie("token", token);

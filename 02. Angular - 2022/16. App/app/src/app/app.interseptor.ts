@@ -1,25 +1,28 @@
-import {
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-  HTTP_INTERCEPTORS,
-} from '@angular/common/http';
+import {HttpEvent, HttpHandler, HttpInterceptor,
+   HttpRequest,HTTP_INTERCEPTORS} from '@angular/common/http';
+
 import { Inject, Injectable, Provider } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
+import { BehaviorSubject, catchError, Observable, of,
+  switchMap, throwError, withLatestFrom} from 'rxjs';
 
+import { environment } from '../environments/environment';
+import { AuthService } from './auth/auth.service';
 import { API_ERROR } from './shared/constants';
-const apiURL = environment.apiURL;
 
-// Automatically attach authentication information to requests
+const apiURL = environment.apiURL;
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
+  
+  constructor(
+    @Inject(API_ERROR)
+    private apiError: BehaviorSubject<Error | null>,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
-  // constructor( @Inject(API_ERROR)) {}
-  constructor( ) {}
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
@@ -30,12 +33,33 @@ export class AppInterceptor implements HttpInterceptor {
         withCredentials: true,
         setHeaders: {
           'Content-Type': 'application/json',
-          'Headers': 'x-authorization',
+          Headers: 'x-authorization',
         },
       });
     }
 
-    return next.handle(req);
+    return next.handle(req).pipe(
+      catchError((err) =>
+        of(
+          err.pipe(
+            withLatestFrom(this.authService.user$),
+            switchMap(([err, user]) => {
+              if (err.status === 401) {
+                if (!user) {
+                  this.router.navigate(['/auth/login']);
+                } else {
+                  this.router.navigate(['/']);
+                }
+              } else {
+                this.apiError.next(err);
+                this.router.navigate(['/error']);
+              }
+              return throwError(() => err);
+            })
+          )
+        )
+      )
+    );
   }
 }
 

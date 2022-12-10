@@ -11,16 +11,13 @@ import { AuthModule } from './auth/auth.module';
 import { AppComponent } from './app.component';
 import { appInterceptorProvider } from './app.interseptor';
 
-
 import { API_ERROR } from './shared/constants';
 import { BehaviorSubject } from 'rxjs';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 
-
 @NgModule({
-  
   declarations: [AppComponent, AuthenticateComponent],
- 
+
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -36,8 +33,7 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
       provide: API_ERROR,
       useValue: new BehaviorSubject(null),
     },
-  ], 
-
+  ],
 
   bootstrap: [AppComponent],
 })
