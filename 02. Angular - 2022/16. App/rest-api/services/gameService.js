@@ -23,10 +23,13 @@ async function updateById(id, body) {
   edited.imageUrl = body.imageUrl;
   edited.genre = body.genre;
   edited.price = body.price;
-  
+
   return edited.save();
 }
 
+async function getLatestsGames(limit) {
+  return Game.find().sort({ created_at: -1 }).limit(limit);
+}
 
 module.exports = {
   getAll,
@@ -34,4 +37,5 @@ module.exports = {
   getById,
   deleteById,
   updateById,
+  getLatestsGames
 };

@@ -1,18 +1,47 @@
 <section id="create-section">
-    <h1 class="item">Hello there, please enter new game.</h1>
+    <h1 class="item">Hello, please enter new game.</h1>
     <main class="item padded align-center">
 
 
 
         <form class="layout left large" #form="ngForm" (ngSubmit)="createHandler(form)">
 
-                <!-- errors -->
-        <!-- {{emailInput.errors | json}} -->
-        <!-- {{emailInput.errors?.['message'] | json}} -->
-            <div class="error-box">              
-                <p>Error</p>             
-            </div>
+            <!-- {{titleInput.errors | json}} -->
+            <!-- {{titleInput.errors?.['message'] | json}} -->
+                     
+            
+            <!-- errors -->
+            <ng-container *ngIf="titleInput.touched">
+                <div class="error-box" *ngIf="titleInput.errors?.['required']  || titleInput.errors?.['minlength']">              
+                    <p>Title is required!</p>             
+                </div>
+            </ng-container>
         
+            <ng-container *ngIf="genreInput.touched">
+                <div class="error-box" *ngIf="genreInput.errors?.['required'] || genreInput.errors?.['minlength']">              
+                    <p>Genre is required!</p>             
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="priceInput.touched">
+                <div class="error-box" *ngIf="priceInput.errors?.['required']  || priceInput.errors?.['minlength']">              
+                    <p>Price is required!</p>             
+                </div>
+            </ng-container>
+        
+            <ng-container *ngIf="imageInput.touched">
+                <div class="error-box" *ngIf="imageInput.errors?.['required'] || imageInput.errors?.['minlength']">              
+                    <p>Image url is required!</p>             
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="descriptionInput.touched">
+                <div class="error-box" *ngIf="descriptionInput.errors?.['required'] || descriptionInput.errors?.['minlength']">              
+                    <p>Description is required!</p>             
+                </div>
+            </ng-container>
+          
+
 
             <div class="col aligned">
 
@@ -49,10 +78,9 @@
 
               
                 <div class="align-center">
-                    <!-- TODO  -->
-                    <!-- <button class="action" [disabled]="form.invalid">Create</button> -->
-                    <button class="action" >Test Button</button>
-                  
+                    
+                    <button class="action" [disabled]="form.invalid">Create</button>
+                                     
                 </div>
             </div>
 

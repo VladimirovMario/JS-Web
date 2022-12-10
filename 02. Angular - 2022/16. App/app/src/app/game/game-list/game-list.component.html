@@ -1,21 +1,19 @@
 <section id="catalog-section" class="spaced">
-    <h1 class="item">Accommodation</h1>
+    <h1 class="item">Games for Playstation 4</h1>
 
     <!-- SEARCH FORM -->
     <main class="item pad-large align-center">
         <form class="layout left large" method="get">
             <div class="col aligned">
-                <label><span>Terms:</span><input name="search" placeholder="Search..." value=""></label>
-                <label><span>Location:</span><input name="city" placeholder="Enter City..." value=""></label>
+                <label>
+                    <span>Terms:</span>
+                    <input type="search" name="search" placeholder="What you will search?" value="">
+                </label>
             </div>
 
-            <div class="col aligned">
-                <label><span>From price:</span><input type="number" name="fromPrice" min="1" max="1000"
-                        value=""></label>
-                <label><span>To price:</span><input type="number" name="toPrice" min="1" max="1000" value=""></label>
-            </div>
-
-            <label><input class="action" type="submit" value="Search"></label>
+            <label> 
+                <button class="action">Search</button>
+            </label>
         </form>
     </main>
 
@@ -35,8 +33,12 @@
                 </main>
                 <footer class="align-center pad-med">
                     <p>Genre: {{game.genre}}</p>
-                    <p>Price: {{game.price}}€</p>
-                    <a class="action" routerLink="/game/detail/{{game._id}}">See details</a>
+                    <p>{{game.description | shorten : 25}}</p>
+                    <strong>
+                        <p>Price: {{game.price}}€</p>
+                    </strong>
+                    <a class="action" routerLink="/game/detail/{{game._id}}">Details</a>
+                    <button class="action" (click)="addToFavorite()">Favorites</button>
                 </footer>
             </li>
         </ul>
@@ -52,7 +54,7 @@
             </main>
         </ng-container>
 
-        
+
     </ng-container>
 
 </section>

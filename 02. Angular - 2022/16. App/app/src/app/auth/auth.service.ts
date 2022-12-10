@@ -33,27 +33,27 @@ export class AuthService implements OnDestroy{
 
   register(email: string, username: string, tel: string, password: string, rePassword: string){
     return this.httpClient
-    .post<IUser>(`/api/register`, {email, username, tel, password, rePassword})
+    .post<IUser>(`/api/user/register`, {email, username, tel, password, rePassword})
     .pipe(tap((user) => this.user$$.next(user)));
   }
 
   login(email: string, password: string){
     // return this.httpClient.post<IUser>(`/api/login`, {email, password}, httpOptions);
     return this.httpClient
-    .post<IUser>(`/api/login`, {email, password})
+    .post<IUser>(`/api/user/login`, {email, password})
     .pipe(tap((user) => this.user$$.next(user)));
   }
 
 
   logout(){
     return this.httpClient
-    .get('/api/logout', {})
+    .get('/api/user/logout', {})
     .pipe(tap(() => this.user$$.next(null)));
   }
 
   // Steel not working
   getProfile() {
-    return this.httpClient.get<IUser>('/api/profile')
+    return this.httpClient.get<IUser>('/api/user/profile')
     .pipe(tap((user) => this.user$$.next(user)),
         catchError((err) =>{
           this.user$$.next(null);

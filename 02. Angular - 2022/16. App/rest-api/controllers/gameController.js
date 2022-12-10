@@ -5,7 +5,10 @@ const { getAll, createGame, getById, deleteById, updateById } = require('../serv
 const { parseError } = require('../util/parser');
 
 
+
 gameController.get('/', async (req, res) => {
+
+    
     let items = [];
     if (req.query.where) {
         const userId = JSON.parse(req.query.where.split('=')[1]);
@@ -15,6 +18,7 @@ gameController.get('/', async (req, res) => {
     }
     res.json(items);
 });
+
 // hasUser()
 gameController.post('/', async (req, res) => {
     try {
@@ -51,7 +55,7 @@ gameController.put('/:id',  async (req, res, next) => {
 });
 // hasUser(),
 gameController.delete('/:id',  async (req, res) => {
-    const item = await getById(req.params.id);
+    const item = await deleteById(req.params.id);
     // if (req.user._id != item._ownerId) {
     //     return res.status(403).json({ message: 'You cannot modify this record' });
     // }
@@ -64,6 +68,9 @@ gameController.delete('/:id',  async (req, res) => {
         res.status(400).json({ message });
     }
 });
+
+
+
 
 
 module.exports = gameController;

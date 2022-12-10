@@ -1,27 +1,47 @@
 <section>
+    <h1 class="item">Video games</h1>
 
-    <h1 class="item">SoftUni Sleepover</h1>
 
+    
     <div class="item">
-
         <main class="layout left med">
             <div class="col">
                 <img src="/assets/img/map-world.png" class="img-med">
             </div>
-
             <div class="content pad-med">
-                <p>Welcome to SoftUni Sleepover!</p>
-                <p>Quickly find affordable accommodation anywhere in the country.</p>
+                <p>Welcome to Store</p>
+                <p>Daily Deals</p>
 
                 <div class="align-center">
-                    <a class="action" routerLink="/game/catalog">Browse Listings</a>
-                    
-                    <a class="action" routerLink="/game/create">Host New Accommodation</a>
-                  
+                    <a class="action" routerLink="/game/catalog">Explore Popular Categories</a>
+                    <a class="action" routerLink="/game/create">Add Category</a>
                 </div>
             </div>
         </main>
+       
+        
+        <!-- Catalog Card  -->
+        <div *ngFor="let game of games; let i = index" [attr.data-index]="i" class="catalog cards">
+            <a routerLink="/game/detail/{{game._id}}">
+                <ul>
+                    <li *ngIf="games?.length" class="item">
+                        <header class="pad-med">
+                            <h2>{{game.title | shorten: 20}}</h2>
+                        </header>
+                        <main class="align-center">
+                            <img class="img-thumb" src="{{game.imageUrl}}">
+                        </main>
+                        <footer class="align-center pad-med">
+                            <p>{{game.description | shorten : 25}}</p>
+                            <p>Price: {{game.price}}€</p>
+                            <!-- <a class="action" routerLink="/game/detail/{{game._id}}">Details</a> -->
+                        </footer>
+                    </li>
+                </ul>
+            </a>
+        </div>
+
 
     </div>
-
 </section>
+

@@ -13,7 +13,7 @@ export const routes: Routes = [
     path: 'auth/login',
     component: LoginComponent,
     canActivate: [AuthActivate],
-    title: 'Login Page',
+    title: 'Sign in',
     data: {
       loginRequired: false,
     },
@@ -22,7 +22,7 @@ export const routes: Routes = [
     path: 'auth/register',
     component: RegisterComponent,
     // canActivate: [AuthActivate],
-    title: 'Register Page',
+    title: 'Sign up',
     // data: {
     //   loginRequired: false,
     // },

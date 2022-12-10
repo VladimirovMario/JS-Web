@@ -28,8 +28,10 @@
 
                 <div class="align-center">
                     <!-- <a class="action" href="/facility/id/decorateRoom">Edit Facilities</a> -->
-                    <a class="action" href="/game/edit/{{game?._id}}">Edit</a>
-                    <a class="action" href="/game/{{game?._id}}/delete">Delete</a>
+                    <a class="action" routerLink="/game/edit/{{game?._id}}">Edit</a>
+                  
+                    <button  class="action" (click)="deleteHandler()" >Delete</button>
+                    
                 </div>
 
             </div>

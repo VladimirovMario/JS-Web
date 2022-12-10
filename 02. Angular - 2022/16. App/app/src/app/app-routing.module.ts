@@ -12,10 +12,12 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: HomeComponent,
+    title: 'Hello'
   },
   {
     path: 'not-found',
     component: PageNotFoundComponent,
+    title: 'Not-found'
   },
   {
     path: 'error',

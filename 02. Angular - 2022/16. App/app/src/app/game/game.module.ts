@@ -6,7 +6,7 @@ import { GameListComponent } from './game-list/game-list.component';
 import { MainComponent } from './main/main.component';
 import { SharedModule } from '../shared/shared.module';
 import { NewGameComponent } from './new-game/new-game.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GameDetailComponent } from './game-detail/game-detail.component';
 import { GameEditComponent } from './game-edit/game-edit.component';
 
@@ -23,6 +23,7 @@ import { GameEditComponent } from './game-edit/game-edit.component';
     CommonModule, // For structure directives (ng if, ng for)
     SharedModule,
     FormsModule,
+    ReactiveFormsModule, //Reactive Forms
     GameRouterModule
   ],
   exports: [

@@ -9,12 +9,12 @@ export const routes: Routes = [
   {
     path: 'game/catalog',
     component: MainComponent,
-    title: 'Our Games Catalog',
+    title: 'Explore Categories',
   },
   {
     path: 'game/create',
     component: NewGameComponent,
-    title: 'Add Game' 
+    title: 'Create Game' 
   },
   {
     path: 'game/detail/:id',

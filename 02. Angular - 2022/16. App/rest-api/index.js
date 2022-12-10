@@ -10,6 +10,7 @@ const dataController = require('./controllers/dataController');
 const trimBody = require('./middlewares/trimBody');
 const session = require('./middlewares/session');
 const gameController = require('./controllers/gameController');
+const homeController = require('./controllers/homeController');
 
 
 const connectionString = 'mongodb://0.0.0.0:27017/exam-prep-3';
@@ -38,7 +39,8 @@ async function start() {
         res.json({ message: 'REST service operational' });
     });
 
-    app.use('/api', authController);
+    app.use('/api/', homeController);
+    app.use('/api/user', authController);
     app.use('/api/game', gameController);
     app.use('/api/catalog', dataController);
 

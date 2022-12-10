@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ErrorComponent } from './error/error.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -21,14 +22,15 @@ import { ErrorComponent } from './error/error.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     HomeComponent,
     PageNotFoundComponent,
-    ErrorComponent
+    ErrorComponent,
   ]
 })
 export class CoreModule { }

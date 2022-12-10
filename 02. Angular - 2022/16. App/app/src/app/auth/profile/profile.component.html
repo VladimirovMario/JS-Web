@@ -1,1 +1,51 @@
-<p>profile works!</p>
+<section id="catalog-section" class="spaced">
+    <h1 class="item">Your favorites</h1>
+
+   
+    <main class="item pad-large align-center">
+        <div class="col">
+            <img src="/assets/img/profile-picture.jpg" class="img-med">                                      
+        </div>
+        <div class="content pad-med">
+            <p>Welcome to our store!</p>
+            <p>Here is a list of games you liked.</p>
+        </div>
+    </main>
+
+
+    <app-loader *ngIf="isLoading"></app-loader>
+    <ng-container *ngIf="!isLoading">
+
+
+        <!-- Catalog Card  -->
+        <ul *ngFor="let game of games; let i = index" [attr.data-index]="i" class="catalog cards">
+            <li *ngIf="games?.length" class="item">
+                <header class="pad-med">
+                    <h2>{{game.title}}</h2>
+                </header>
+                <main class="align-center">
+                    <img class="img-thumb" src="{{game.imageUrl}}">
+                </main>
+                <footer class="align-center pad-med">
+                    <p>{{game.description | shorten : 20}}</p>
+                    <p>Price: {{game.price}}€</p>
+                    <a class="action" routerLink="/game/card/{{game._id}}">Add to card</a>
+                </footer>
+            </li>
+        </ul>
+
+
+        <!-- Nothing has been liked yet -->
+        <ng-container *ngIf="!games?.length">
+            <main class="item pad-large align-center">
+                <p>Nothing has been liked yet. Take a peek!</p>
+                <div>
+                    <a class="action" routerLink="/game/catalog">Catalog</a>
+                </div>
+            </main>
+        </ng-container>
+
+
+    </ng-container>
+
+</section>
