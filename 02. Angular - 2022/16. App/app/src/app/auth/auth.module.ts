@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AuthRouterModule } from './auth-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -14,13 +16,15 @@ import { LogoutComponent } from './logout/logout.component';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    LogoutComponent
+    LogoutComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
     AuthRouterModule,
     FormsModule,  //Template-Driven Forms
     ReactiveFormsModule, //Reactive Forms
+    SharedModule
   ]
 })
 export class AuthModule { }

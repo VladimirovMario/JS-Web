@@ -12,10 +12,12 @@ export class LogoutComponent {
 
 
     this.authService.logout().subscribe({
-      next: () => {        
+      next: () => {     
+        this.authService.user = null;
         this.router.navigate(['/auth/login']);
       },
-      error: () => {       
+      error: () => {   
+        this.authService.user = null;
         this.router.navigate(['/auth/login']);
       },
     });

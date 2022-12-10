@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IUser } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
 
+  user: IUser | null = null;
+
+  get isLoggedIn() {
+    return this.user !== null;
+  }
+
+  
+  constructor() { }
+  
   ngOnInit(): void {
+    console.log('>>> User from header>>>',this.user);
+
   }
 
 }

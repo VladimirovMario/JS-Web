@@ -38,6 +38,7 @@ export class RegisterComponent implements OnInit {
 
     this.authService.register(email!, username!, tel!, password!, rePassword!).subscribe({
       next: (user) => {
+        this.authService.user = user
         this.router.navigate(['/game/catalog']);
       },
       error: (err) => {

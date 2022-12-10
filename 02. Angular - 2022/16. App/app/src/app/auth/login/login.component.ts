@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(email!, password!).subscribe({
       next: (user) => {
+        this.authService.user = user
         this.router.navigate(['/game/catalog']);
       },
       error: (err) => {

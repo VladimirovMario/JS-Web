@@ -38,6 +38,14 @@ async function login(email, password) {
     return createToken(user);
 }
 
+/////
+async function getProfileInfo(user) {
+    const { _id: userId } = user;
+   const currUser =  User.findOne({ _id: userId }, { password: 0, __v: 0 });
+    // TODO check for errors
+   return createToken(currUser)
+}
+//////
 
 async function logout(token) {
     tokenBlacklist.add(token);
@@ -72,5 +80,6 @@ module.exports = {
     register,
     login,
     logout,
+    getProfileInfo,
     parseToken,    
 };

@@ -14,11 +14,12 @@ import { appInterceptorProvider } from './app.interseptor';
 
 import { API_ERROR } from './shared/constants';
 import { BehaviorSubject } from 'rxjs';
+import { AuthenticateComponent } from './authenticate/authenticate.component';
 
 
 @NgModule({
   
-  declarations: [AppComponent],
+  declarations: [AppComponent, AuthenticateComponent],
  
   imports: [
     BrowserModule,

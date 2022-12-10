@@ -52,7 +52,21 @@ authController.post("/login", async (req, res) => {
   }
 });
 
+////////
+authController.get('/profile' , async (req, res,) => {
+  try {
+    const token = await getProfileInfo(req.body.user);
+    res.json(token);
+    // res.cookie("token", token);
+  } catch (error) {
+    const message = parseError(error);
+    res.status(401).json({ message });
+  }
+})
+//////
+
 authController.get("/logout", async (req, res) => {
+  console.log('>>>From logout');
   const token = req.token;
   // res.clearCookie("token");
   await logout(token);
