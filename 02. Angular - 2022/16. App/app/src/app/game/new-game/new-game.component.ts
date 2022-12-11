@@ -14,16 +14,12 @@ export class NewGameComponent implements OnInit {
   ngOnInit(): void {}
 
   createHandler(form: NgForm) {
-    // if (form.invalid) { return; }
+    if (form.invalid) { return; }
    
-    
-    // { title: "gta", genre: "aaa", price: 10, imageUrl: "https://", description: "dasdasdasdasda" }
-
     const { title, genre, price, imageUrl, description } = form.value;
 
     if (price <= 0) {
-      // throw new Error('Price must be a positive number!');      
-      console.error('Price must be a positive number!');
+      // console.error('Price must be a positive number!');
     }
 
     this.gameService

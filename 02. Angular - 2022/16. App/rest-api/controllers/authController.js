@@ -11,8 +11,7 @@ authController.post("/register",
     .withMessage("Password must be at least 3 characters long"),
 
   async (req, res) => {
-    console.log('>>> From backend register',req.body);
-
+   
     try {
       const { errors } = validationResult(req);
       if (errors.length > 0) {
@@ -29,8 +28,7 @@ authController.post("/register",
       );
 
       res.json(token);
-      // res.cookie("token", token);
-
+      
     } catch (error) {
       const message = parseError(error);
       res.status(400).json({ message });
@@ -39,41 +37,33 @@ authController.post("/register",
 );
 
 authController.post("/login", async (req, res) => {
-  console.log(">>> From post login >>>", req.body);
+ 
   try {
     const token = await login(req.body.email, req.body.password);
+    res.json(token);
+    //  res.status(200).json({"token": token});
 
-    //TODO change the status code to 200 after i finish
-   res.status(200).json({"token": token});
-  //  res.status(200).res.json(token)
-  //  res.json(token);
-    // res.cookie("token", token);
-
-  } catch (error) {
+    } catch (error) {
     const message = parseError(error);
     res.status(401).json({ message });
   }
 });
 
-////////
-authController.get('/profile' , async (req, res,) => {
-  console.log('>>> From profile', req.user);
-  try {
-    
+// TODO make it work
+authController.get('/profile' , async (req, res,) => {  
+  try {    
     const token = await getProfileInfo(req.body.user);
     res.json(token);
-    // res.cookie("token", token);
   } catch (error) {
     const message = parseError(error);
     res.status(401).json({ message });
   }
 })
-//////
+
 
 authController.get("/logout", async (req, res) => {
-  console.log('>>>From logout');
   const token = req.token;
-  // res.clearCookie("token");
+   
   await logout(token);
   res.status(204).end();
 });

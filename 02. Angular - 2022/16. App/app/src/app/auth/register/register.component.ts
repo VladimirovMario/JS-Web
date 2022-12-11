@@ -9,6 +9,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+
   form = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     username: ['', [Validators.required, Validators.minLength(3)]],
@@ -28,7 +29,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   registerHandler() {
-    // if (this.form.invalid) { return; }
+    if (this.form.invalid) { return; }
 
     const { email, username, tel, password, rePassword } = this.form.value;
     // TODO fix Errors!
@@ -36,17 +37,17 @@ export class RegisterComponent implements OnInit {
       console.error("Passwords don't match");
     }
 
-    this.authService.register(email!, username!, tel!, password!, rePassword!).subscribe({
-      next: (user) => {
-        this.authService.user = user
-        this.router.navigate(['/game/catalog']);
-      },
-      error: (err) => {
-        this.message = err.message;
-        console.error('Error from register', this.message);
-      }
-    });
-
-    console.log(this.form.value);
+    this.authService
+      .register(email!, username!, tel!, password!, rePassword!)
+      .subscribe({
+        next: (user) => {
+          this.authService.user = user;
+          this.router.navigate(['/game/catalog']);
+        },
+        error: (err) => {
+          this.message = err.message;
+          console.error(this.message);
+        },
+      });
   }
 }

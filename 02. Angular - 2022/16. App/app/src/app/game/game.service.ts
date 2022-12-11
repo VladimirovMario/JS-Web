@@ -11,8 +11,7 @@ const apiUrl = environment.apiURL;
 })
 export class GameService {
 
-  // userId: string = '123' 
-
+ 
   constructor(private httpClient: HttpClient) {}
 
   getAll() {

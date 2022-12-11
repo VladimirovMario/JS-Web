@@ -16,11 +16,10 @@ dataController.get('/', async (req, res) => {
     res.json(items);
 });
 
-// TODO
 dataController.post('/', hasUser() ,async (req, res) => {
     try {
         const data = Object.assign({ _ownerId: req.user._id }, req.body);
-        console.log('>>> From  REST API dataController.post',data);
+        
         const item = await create(data);
         res.json(item);
     } catch (err) {

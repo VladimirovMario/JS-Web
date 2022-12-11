@@ -1,4 +1,3 @@
-// TODO tested, works
 function hasUser() {
     return (req, res, next) => {
         if (req.user) {

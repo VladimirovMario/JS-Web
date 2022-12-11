@@ -10,7 +10,6 @@ import { IGame } from '../../shared/interfaces';
   styleUrls: ['./game-list.component.scss'],
 })
 export class GameListComponent implements OnInit {
-
   games: IGame[] | null = null;
   isLoading: boolean = true;
 
@@ -18,9 +17,10 @@ export class GameListComponent implements OnInit {
   // form = this.formBuilder.group({});
 
   constructor(
-    private gameService: GameService,
+    private gameService: GameService
     // private formBuilder: FormBuilder
-  ) {}
+    ) 
+  {}
 
   ngOnInit(): void {
     this.gameService.getAll().subscribe({
@@ -31,15 +31,11 @@ export class GameListComponent implements OnInit {
       error: (err) => {
         console.error(err);
       },
-      complete: () => {
-        console.log('Observer got a complete notification');
-      },
+      complete: () => {},
     });
   }
 
-  addToFavorite(){
+  addToFavorite() {
     // TODO add to favorite list!!!
   }
-
-
 }

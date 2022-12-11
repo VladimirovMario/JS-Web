@@ -7,7 +7,6 @@ const { parseError } = require('../util/parser');
 
 
 gameController.get('/', async (req, res) => {
-
     
     let items = [];
     if (req.query.where) {

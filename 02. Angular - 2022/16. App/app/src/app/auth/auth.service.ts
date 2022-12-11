@@ -1,17 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
-import { catchError, filter, Subscription, tap } from 'rxjs';
+import { catchError, filter, map, Observable, Subscription, tap } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { IUser } from '../shared/interfaces';
 
  
-// const httpOptions = {
-//   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-// };
-
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService implements OnDestroy{
 
   private user$$ = new BehaviorSubject<undefined | null | IUser>(undefined);
@@ -27,6 +24,7 @@ export class AuthService implements OnDestroy{
 
   subscription: Subscription;
 
+
   constructor(private httpClient: HttpClient) {
     this.subscription = this.user$.subscribe((user) => { this.user = user; });
   }
@@ -38,14 +36,24 @@ export class AuthService implements OnDestroy{
   }
 
   login(email: string, password: string){
-    // return this.httpClient.post<IUser>(`/api/login`, {email, password}, httpOptions);
     return this.httpClient
     .post<IUser>(`/api/user/login`, {email, password})
     .pipe(tap((user) => this.user$$.next(user)));
   }
-
-
+/*
+  login(email: string, password: string): Observable<any> {
+    return this.httpClient.post<{token: string}>('/api/user/login', { email, password})
+      .pipe(
+        map(result => {
+          console.log(JSON.stringify(result.token));          
+          localStorage.setItem('token', JSON.stringify(result.token))
+          return true;
+        })
+    );
+  }
+*/
   logout(){
+    localStorage.removeItem('token');
     return this.httpClient
     .get('/api/user/logout', {})
     .pipe(tap(() => this.user$$.next(null)));
@@ -61,7 +69,7 @@ export class AuthService implements OnDestroy{
         })
      );
   }
-
+  
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

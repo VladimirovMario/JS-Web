@@ -6,7 +6,7 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss', '../register/register.component.scss']
+  styleUrls: ['./login.component.scss', '../register/register.component.scss'],
 })
 export class LoginComponent implements OnInit {
 
@@ -19,26 +19,24 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  loginHandler(){
-    // if (this.form.invalid) { return; }
-    const { email,  password } = this.form.value;
+  loginHandler() {
+    if (this.form.invalid) { return; }
+    
+    const { email, password } = this.form.value;
 
     this.authService.login(email!, password!).subscribe({
       next: (user) => {
-        this.authService.user = user
+        this.authService.user = user;
+        // TODO 
         // this.router.navigate(['/game/catalog']);
       },
       error: (err) => {
-        console.error('Error from register', err.message);
-      }
+        console.error(err.message);
+      },
     });
-
-    console.log(this.form.value);
   }
-
 }

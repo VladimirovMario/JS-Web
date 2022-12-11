@@ -15,7 +15,6 @@ const apiURL = environment.apiURL;
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
-  [x: string]: any;
   
   constructor(
     @Inject(API_ERROR)
@@ -28,8 +27,7 @@ export class AppInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log('Interception In Progress');
-
+   
     const token: string | any = localStorage.getItem('token');
   
     req = req.clone({headers: req.headers.set('Authorization', 'Bearer ' + token) });

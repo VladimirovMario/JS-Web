@@ -11,13 +11,11 @@ export class ProfileComponent implements OnInit {
   
   isLoading: boolean = true;
   games: IGame[] | null = null;
-  limit: number = 2
+  limit: number = 2;
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-
-   
     this.apiService.getLatestsGames(this.limit).subscribe({
       next: (value) => {
         this.isLoading = false;
@@ -26,9 +24,7 @@ export class ProfileComponent implements OnInit {
       error: (err) => {
         console.error(err);
       },
-      complete: () => {
-        console.log('Observer got a complete notification');
-      },
+      complete: () => {},
     });
   }
 }

@@ -26,15 +26,12 @@ export class GameDetailComponent implements OnInit {
     this.gameService.getById(this.id).subscribe({
       next: (value) => {
         this.game = value;
-        console.log(value);
       },
       error: (err) => {
         this.message = err.message;
-        console.error('>>> From details ', this.message);
+        console.error(this.message);
       },
-      complete: () => {
-        console.log('Observer got a complete notification');
-      },
+      complete: () => {},
     });
   }
 
@@ -45,7 +42,7 @@ export class GameDetailComponent implements OnInit {
       },
       error: (err) => {
         this.message = err.message;
-        console.error('>>> Delete ', this.message);
+        console.error(this.message);
       },
     });
   }

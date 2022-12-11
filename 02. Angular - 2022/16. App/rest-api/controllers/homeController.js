@@ -3,8 +3,7 @@ const { getAll, getLatestsGames } = require("../services/gameService");
 const homeController = require("express").Router();
 
 homeController.get("/", async (req, res) => {
-  console.log(" <<>>> ", req.query.limit);
-
+ 
   let games = [];
   const limit = Number(req.query.limit) || 0;
 
