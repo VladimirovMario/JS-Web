@@ -2,6 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+
+const bodyParser    = require('body-parser');
+const jwt           = require('jsonwebtoken');
+const expressJWT      = require('express-jwt');
+
 // const cookieParser = require("cookie-parser");
 const  config = require('./middlewares/cors');
 
@@ -14,10 +19,6 @@ const homeController = require('./controllers/homeController');
 
 
 const connectionString = 'mongodb://0.0.0.0:27017/exam-prep-3';
-// const connectionString = 'mongodb://0.0.0.0:27017/exam-prep';
-// const connectionString = 'mongodb://0.0.0.0:27017/exam';
-
-
 start();
 
 async function start() {
@@ -25,6 +26,11 @@ async function start() {
     console.log('Database connected');
 
     const app = express();
+
+
+    app.use(bodyParser.json({limit: '10mb', extended: true}));
+    app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
+
 
     app.use(express.json());
     // app.use(cookieParser());
