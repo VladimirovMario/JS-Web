@@ -51,6 +51,9 @@ async function logout(token) {
     tokenBlacklist.add(token);
 }
 
+// let token = jwt.sign(userData, secret, { expiresIn: '15s'})
+    // res.status(200).json({"token": token});
+
 
 function createToken(user) {
     const payload = {
@@ -61,7 +64,7 @@ function createToken(user) {
     return {
         _id: user._id,
         email: user.email,
-        accessToken: jwt.sign(payload, secret)
+        token: jwt.sign(payload, secret)
     };
 }
 
