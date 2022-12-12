@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
 import { IGame } from '../../shared/interfaces';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Router } from '@angular/router';
 // import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -11,7 +12,11 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./game-list.component.scss'],
 })
 export class GameListComponent implements OnInit {
+
   games: IGame[] | null = null;
+  game: IGame | null = null;
+  message!: string
+
   isLoading: boolean = true;
 
   get user () {
@@ -23,7 +28,8 @@ export class GameListComponent implements OnInit {
 
   constructor(
     private gameService: GameService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
     // private formBuilder: FormBuilder
     ) 
   {
@@ -49,7 +55,34 @@ export class GameListComponent implements OnInit {
     });
   }
 
-  addToFavorite() {
-    // TODO add to favorite list!!!
+  addToFavorite( id: string) {
+    this.gameService.getById(id).subscribe({
+      next: (value) => {
+        this.game = value;
+
+        // Check if user._id is different from null
+        if (this.user?._id) {
+
+          // Check if user already liked this game
+          if (this.game?.users.includes(this.user?._id) == false) {
+            
+            // Making post request to database to add user id
+            this.gameService.likeGame(this.game._id, this.user._id).subscribe({
+              next: (_) => {
+                // In case of success redirect to profile to see liked items
+                this.router.navigate(['/auth/profile']);
+              },
+            });
+          } else {
+            console.error('You already has liked this game!');
+          }
+        }
+      },
+      error: (err) => {
+        this.message = err.message;
+        console.error(this.message);
+      },
+      complete: () => {},
+    });  
   }
 }

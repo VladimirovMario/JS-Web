@@ -38,7 +38,7 @@
                         <p>Price: {{game.price}}€</p>
                     </strong>
                     <a class="action" routerLink="/game/detail/{{game._id}}">Details</a>
-                    <button class="action" (click)="addToFavorite()">Favorites</button>
+                    <button class="action" (click)="addToFavorite(game._id)">Favorites</button>
                 </footer>
             </li>
         </ul>
