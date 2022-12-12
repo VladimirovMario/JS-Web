@@ -31,11 +31,24 @@ async function getLatestsGames(limit) {
   return Game.find().sort({ created_at: -1 }).limit(limit);
 }
 
+
+async function likeGame(gameId, userId) {
+  const game = await Game.findById(gameId);
+
+  if (game.users.includes(userId)) {
+    console.log("Cannot book twice");
+    throw new Error("Cannot like twice");
+  }
+  game.users.push(userId);
+  await game.save();
+}
+
 module.exports = {
   getAll,
   createGame,
   getById,
   deleteById,
   updateById,
-  getLatestsGames
+  getLatestsGames,
+  likeGame
 };

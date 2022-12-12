@@ -55,7 +55,8 @@ return next.handle(req).pipe(
     switchMap(([err, user]) => {
       if (err.status === 401) {
         if (!user) {
-          this.router.navigate(['/auth/login']);
+          // this.router.navigate(['/auth/login']);
+          this.router.navigate(['/']);
         } else {
           this.router.navigate(['/']);
         }

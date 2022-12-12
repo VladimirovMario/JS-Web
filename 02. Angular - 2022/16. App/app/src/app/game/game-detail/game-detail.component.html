@@ -16,7 +16,6 @@
                     <div>
                         <p>Price: {{game?.price}}€</p>
                     </div>
-
                     <!-- <ul class="catalog">
                         <li>
                             <img class="facility-icon" src="iconUrl" alt="facility-icon">
@@ -24,15 +23,19 @@
                     </ul> -->
                 </div>
 
-
-
+               
                 <div class="align-center">
-                    <!-- <a class="action" href="/facility/id/decorateRoom">Edit Facilities</a> -->
-                    <a class="action" routerLink="/game/edit/{{game?._id}}">Edit</a>
-                  
-                    <button  class="action" (click)="deleteHandler()" >Delete</button>
                     
+                    <button class="action" (click)="addHandler()">Favorites</button>
+                  
+                     
+                    <ng-container *ngIf="isLoggedIn">
+                        <a class="action" routerLink="/game/edit/{{game?._id}}">Edit</a>
+                        <button class="action" (click)="deleteHandler()">Delete</button>
+                    </ng-container>
+
                 </div>
+
 
             </div>
         </main>

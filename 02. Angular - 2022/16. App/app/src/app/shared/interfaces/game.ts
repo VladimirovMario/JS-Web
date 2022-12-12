@@ -8,6 +8,7 @@ export interface IGame{
     genre: string,
     price: number,
     userId: IUser;
+    users: string []
     createdAt: string,
     owner: string,    
 }

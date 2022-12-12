@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
 import { IUser } from 'src/app/shared/interfaces';
 
 @Component({
@@ -8,13 +9,16 @@ import { IUser } from 'src/app/shared/interfaces';
 })
 export class HeaderComponent implements OnInit {
   
-  user: IUser | null = null;
+  get isLoggedIn () {
+    return this.authService.isLoggedIn;
+   }
+  
+   get user () {
+     return this.authService.user
+   }
 
-  get isLoggedIn() {
-    return this.user !== null;
-  }
-
-  constructor() {}
+   
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
 }

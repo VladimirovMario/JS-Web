@@ -27,7 +27,7 @@ export class AuthActivate implements CanActivate {
     }
 
     return !!user 
-    ? this.router.createUrlTree(['/theme/list'])
+    ? this.router.createUrlTree(['/game/catalog'])
     : this.router.createUrlTree(['/auth/login']);
       })
     )

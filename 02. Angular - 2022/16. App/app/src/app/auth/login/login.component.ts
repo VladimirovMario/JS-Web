@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       next: (user) => {
         this.authService.user = user;
         // TODO 
-        // this.router.navigate(['/game/catalog']);
+        this.router.navigate(['/game/catalog']);
       },
       error: (err) => {
         console.error(err.message);

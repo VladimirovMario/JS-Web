@@ -21,28 +21,28 @@ export const routes: Routes = [
   {
     path: 'auth/register',
     component: RegisterComponent,
-    // canActivate: [AuthActivate],
+    canActivate: [AuthActivate],
     title: 'Sign up',
-    // data: {
-    //   loginRequired: false,
-    // },
+    data: {
+      loginRequired: false,
+    },
   },
   {
     path: 'auth/logout',
     component: LogoutComponent,
     canActivate: [AuthActivate],
-    // data: {
-    //   loginRequired: true,
-    // },
+    data: {
+      loginRequired: true,
+    },
   },
   {
     path: 'auth/profile',
     component: ProfileComponent,
-    // canActivate: [AuthActivate],
+    canActivate: [AuthActivate],
     title: 'Profile',
-    // data: {
-    //   loginRequired: true,
-    // },
+    data: {
+      loginRequired: true,
+    },
   },
     
 ];

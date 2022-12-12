@@ -6,35 +6,49 @@
         <span>
             <p>Visit Home</p>
         </span>
-
     </a>
-    <span class="item">Welcome, Peter</span>
+
+
+    <ng-container *ngIf="isLoggedIn">
+        <span class="item">Welcome, {{user?.email}}</span>
+    </ng-container>
 
 
 
 
     <nav class="main-nav nav-mid">
         <ul>
-            <li>
-                <a routerLink="/game/catalog">Catalog</a>
-            </li>
 
-            <li>
-                <a routerLink="/game/create">Create</a>
-            </li>
-             <li>
-                <a routerLink="/auth/profile">Profile</a>
-            </li> 
-            <li>
-                <a routerLink="/auth/logout">Logout</a>
-            </li>
+            <!-- guest navigation -->
+            <ng-container *ngIf="!isLoggedIn">
+                <li>
+                    <a routerLink="/game/catalog">Catalog</a>
+                </li>
+                <li>
+                    <a routerLink="/auth/login">Login</a>
+                </li>
+                <li>
+                    <a routerLink="/auth/register">Register</a>
+                </li>
+            </ng-container>
 
-            <li>
-                <a routerLink="/auth/login">Login</a>
-            </li>
-            <li>
-                <a routerLink="/auth/register">Register</a>
-            </li>
+            <!-- user navigation -->
+            <ng-container *ngIf="isLoggedIn">
+                <li>
+                    <a routerLink="/game/catalog">Catalog</a>
+                </li>
+                <li>
+                    <a routerLink="/game/create">Create</a>
+                </li>
+                <li>
+                    <a routerLink="/auth/profile">Profile</a>
+                </li>
+                <li>
+                    <a routerLink="/auth/logout">Logout</a>
+                </li>
+            </ng-container>
+
+
 
         </ul>
     </nav>

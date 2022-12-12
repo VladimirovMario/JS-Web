@@ -29,4 +29,9 @@ export class GameService {
   deleteById(id: string) {
     return this.httpClient.delete<IGame>(`${apiUrl}/game/` + id)
   }
+
+  likeGame(gameId: string, userId: string) {
+    return this.httpClient.post<IGame>(`${apiUrl}/game/${gameId}/liked/${userId}`, {})
+  }
+
 }

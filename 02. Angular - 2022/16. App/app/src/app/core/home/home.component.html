@@ -14,7 +14,8 @@
 
                 <div class="align-center">
                     <a class="action" routerLink="/game/catalog">Explore Popular Categories</a>
-                    <a class="action" routerLink="/game/create">Add Category</a>
+                    
+                    <a *ngIf="isLoggedIn" class="action" routerLink="/game/create">Add Category</a>
                 </div>
             </div>
         </main>
