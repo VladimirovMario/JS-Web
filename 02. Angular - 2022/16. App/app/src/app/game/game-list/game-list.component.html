@@ -7,7 +7,10 @@
             <div class="col aligned">
                 <label>
                     <span>Terms:</span>
-                    <input type="search" name="search" placeholder="What you will search?" value="">
+                    
+                        <input class="form-control search-game" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for a game by id or title or description">
+                        <!-- <input type="search" name="search" placeholder="What you will search?" value=""> -->
+                 
                 </label>
             </div>
 
@@ -23,7 +26,11 @@
 
 
         <!-- Catalog Card  -->
-        <ul *ngFor="let game of games; let i = index" [attr.data-index]="i" class="catalog cards">
+       
+       
+        <!-- <ul *ngFor="let game of games | filter:searchText" class="catalog cards"  > -->
+        <ul *ngFor="let game of games " class="catalog cards"  >
+
             <li *ngIf="games?.length" class="item">
                 <header class="pad-med">
                     <h2>{{game.title}}</h2>

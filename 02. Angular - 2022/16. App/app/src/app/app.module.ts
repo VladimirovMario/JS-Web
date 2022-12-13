@@ -14,6 +14,8 @@ import { appInterceptorProvider } from './app.interseptor';
 import { API_ERROR } from './shared/constants';
 import { BehaviorSubject } from 'rxjs';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
+// search module
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [AppComponent, AuthenticateComponent],
@@ -26,6 +28,7 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
     AuthModule,
     AppRoutingModule,
     SharedModule,
+    Ng2SearchPipeModule
   ],
   providers: [
     appInterceptorProvider,

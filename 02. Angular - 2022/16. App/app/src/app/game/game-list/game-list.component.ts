@@ -12,16 +12,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./game-list.component.scss'],
 })
 export class GameListComponent implements OnInit {
-
   games: IGame[] | null = null;
   game: IGame | null = null;
-  message!: string
+  message!: string;
 
   isLoading: boolean = true;
 
-  get user () {
-    return this.authService.user
+  get user() {
+    return this.authService.user;
   }
+  // https://www.npmjs.com/package/ng2-search-filter
+  // https://stackblitz.com/edit/angular-search-filter?file=app%2Fapp.component.html
+  // https://betterprogramming.pub/why-and-how-to-create-an-impure-filter-pipe-in-angular-a3916de5841f
+  searchText!: string;
 
   // TODO Search
   // form = this.formBuilder.group({});
@@ -30,10 +33,9 @@ export class GameListComponent implements OnInit {
     private gameService: GameService,
     private authService: AuthService,
     private router: Router
-    // private formBuilder: FormBuilder
-    ) 
+  ) // private formBuilder: FormBuilder
   {
-    console.log('User' ,this.user);
+    console.log('User', this.user);
   }
 
   ngOnInit(): void {
@@ -49,24 +51,24 @@ export class GameListComponent implements OnInit {
     });
   }
 
-  addToFavorite( id: string) {
+  addToFavorite(id: string) {
     this.gameService.getById(id).subscribe({
       next: (value) => {
         this.game = value;
 
         // Check if user._id is different from null
         if (this.user?._id) {
-
           // Check if user already liked this game
           if (this.game?.users.includes(this.user?._id) == false) {
-            
             // Making post request to database to add user id
-            this.gameService.addGameToFavorites(this.game._id, this.user._id).subscribe({
-              next: (_) => {
-                // In case of success redirect to profile to see liked items
-                this.router.navigate(['/auth/profile']);
-              },
-            });
+            this.gameService
+              .addGameToFavorites(this.game._id, this.user._id)
+              .subscribe({
+                next: (_) => {
+                  // In case of success redirect to profile to see liked items
+                  this.router.navigate(['/auth/profile']);
+                },
+              });
           } else {
             console.error('You already had liked this game!');
           }
@@ -77,6 +79,6 @@ export class GameListComponent implements OnInit {
         console.error(this.message);
       },
       complete: () => {},
-    });  
+    });
   }
 }
