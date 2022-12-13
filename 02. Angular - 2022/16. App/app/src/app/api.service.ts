@@ -13,6 +13,10 @@ export class ApiService {
   constructor(private httpClient: HttpClient) {}
 
 
+  getUserFavorites(userId: string) {
+    return this.httpClient.get<IGame[]>(`${apiURL}/game/liked/${userId}`);
+  }
+
   getLatestsGames(limit?: number) {
     return this.httpClient.get<IGame[]>(`${apiURL}/${limit ? `?limit=${limit}` : ``}`);
   }

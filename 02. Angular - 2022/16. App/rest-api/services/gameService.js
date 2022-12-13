@@ -31,16 +31,18 @@ async function getLatestsGames(limit) {
   return Game.find().sort({ created_at: -1 }).limit(limit);
 }
 
-
-async function likeGame(gameId, userId) {
+async function addGameToFavorites(gameId, userId) {
   const game = await Game.findById(gameId);
 
   if (game.users.includes(userId)) {
-    console.log("Cannot book twice");
     throw new Error("Cannot like twice");
   }
   game.users.push(userId);
   await game.save();
+}
+
+async function getUserFavorites(userId) {
+  return Game.find({ users: userId });
 }
 
 module.exports = {
@@ -50,5 +52,6 @@ module.exports = {
   deleteById,
   updateById,
   getLatestsGames,
-  likeGame
+  addGameToFavorites,
+  getUserFavorites
 };

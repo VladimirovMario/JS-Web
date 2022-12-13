@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { IGame } from 'src/app/shared/interfaces/game';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,15 +9,21 @@ import { IGame } from 'src/app/shared/interfaces/game';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+
+  get user() {
+    return this.authService.user;
+  }
   
   isLoading: boolean = true;
-  games: IGame[] | null = null;
-  limit: number = 2;
+  games: IGame[] | null = null;  
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.apiService.getLatestsGames(this.limit).subscribe({
+ 
+    this.apiService.getUserFavorites(this.user?._id || ``).subscribe({
       next: (value) => {
         this.isLoading = false;
         this.games = value;

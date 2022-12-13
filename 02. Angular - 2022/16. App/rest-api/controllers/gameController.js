@@ -1,7 +1,7 @@
 const gameController = require('express').Router();
 
 const { hasUser } = require('../middlewares/guards');
-const { getAll, createGame, getById, deleteById, updateById , likeGame} = require('../services/gameService');
+const { getAll, createGame, getById, deleteById, updateById , addGameToFavorites, getUserFavorites} = require('../services/gameService');
 const { parseError } = require('../util/parser');
 
 
@@ -71,7 +71,7 @@ gameController.delete('/:id',  async (req, res) => {
 gameController.post('/:gameId/liked/:userId', async (req, res) => {
     const { gameId, userId } =  req.params;
       try {
-       const item =  await likeGame( gameId, userId );
+       const item =  await addGameToFavorites( gameId, userId );
        res.json(item);
     } catch (err) {
         const message = parseError(err);
@@ -79,8 +79,15 @@ gameController.post('/:gameId/liked/:userId', async (req, res) => {
     }
 });
 
-gameController.get('/:gameId/liked/', async (req, res) => {
-    console.log(req.params);
+gameController.get('/liked/:userId', async (req, res) => {
+    const { userId } =  req.params;
+    try {
+        const item = await getUserFavorites(userId);
+        res.json(item);
+    } catch (err) {
+        const message = parseError(err);
+        res.status(400).json({ message });
+    }
 });
 
 

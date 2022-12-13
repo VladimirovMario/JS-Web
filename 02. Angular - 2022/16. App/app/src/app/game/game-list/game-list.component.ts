@@ -33,13 +33,7 @@ export class GameListComponent implements OnInit {
     // private formBuilder: FormBuilder
     ) 
   {
-
-
-    console.log('test' ,this.user);
-
-    console.log(JSON.parse(localStorage.getItem(this.user as any) as any));
-
-
+    console.log('User' ,this.user);
   }
 
   ngOnInit(): void {
@@ -67,14 +61,14 @@ export class GameListComponent implements OnInit {
           if (this.game?.users.includes(this.user?._id) == false) {
             
             // Making post request to database to add user id
-            this.gameService.likeGame(this.game._id, this.user._id).subscribe({
+            this.gameService.addGameToFavorites(this.game._id, this.user._id).subscribe({
               next: (_) => {
                 // In case of success redirect to profile to see liked items
                 this.router.navigate(['/auth/profile']);
               },
             });
           } else {
-            console.error('You already has liked this game!');
+            console.error('You already had liked this game!');
           }
         }
       },
