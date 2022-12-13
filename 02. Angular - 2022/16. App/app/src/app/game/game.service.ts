@@ -18,12 +18,16 @@ export class GameService {
     return this.httpClient.get<IGame[]>(`${apiUrl}/game`);
   }
 
+  create(title: string, genre: string , price: number, imageUrl: string, description: string) {
+    return this.httpClient.post(`${apiUrl}/game`, {title, genre , price, imageUrl, description});
+  }
+
   getById(id: string) {
     return this.httpClient.get<IGame>(`${apiUrl}/game/` + id)
   }
 
-  create(title: string, genre: string , price: number, imageUrl: string, description: string) {
-    return this.httpClient.post(`${apiUrl}/game`, {title, genre , price, imageUrl, description});
+  updateById(id: string, title: string, genre: string , price: number, imageUrl: string, description: string) {
+    return this.httpClient.put<IGame>(`${apiUrl}/game/` + id, {title, genre , price, imageUrl, description});
   }
 
   deleteById(id: string) {

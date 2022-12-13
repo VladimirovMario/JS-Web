@@ -4,7 +4,14 @@ async function getAll() {
   return Game.find({});
 }
 
-async function createGame(game) {
+async function createGame(gameData) {
+  const game = {
+    title: gameData.title,
+    description: gameData.description,
+    imageUrl: gameData.imageUrl,
+    genre: gameData.genre,
+    price: Number(gameData.price),
+  };
   return Game.create(game);
 }
 
@@ -19,10 +26,10 @@ async function deleteById(id) {
 async function updateById(id, body) {
   const edited = await Game.findById(id);
   edited.title = body.title;
-  edited.description = body.keyword;
+  edited.description = body.description;
   edited.imageUrl = body.imageUrl;
   edited.genre = body.genre;
-  edited.price = body.price;
+  edited.price = Number(body.price);
 
   return edited.save();
 }
@@ -53,5 +60,5 @@ module.exports = {
   updateById,
   getLatestsGames,
   addGameToFavorites,
-  getUserFavorites
+  getUserFavorites,
 };

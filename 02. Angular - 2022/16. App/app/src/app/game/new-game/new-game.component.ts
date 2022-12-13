@@ -9,7 +9,11 @@ import { GameService } from '../game.service';
   styleUrls: ['./new-game.component.scss'],
 })
 export class NewGameComponent implements OnInit {
-  constructor(private gameService: GameService, private router: Router) {}
+
+  constructor(
+    private gameService: GameService,
+     private router: Router
+     ) {}
 
   ngOnInit(): void {}
 
@@ -18,8 +22,8 @@ export class NewGameComponent implements OnInit {
    
     const { title, genre, price, imageUrl, description } = form.value;
 
-    if (price <= 0) {
-      // console.error('Price must be a positive number!');
+    if (Number(price) <= 0) {
+      console.error('Price must be a positive number!');
     }
 
     this.gameService

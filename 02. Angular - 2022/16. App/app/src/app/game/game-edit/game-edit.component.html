@@ -1,1 +1,85 @@
-<p>game-edit works!</p>
+<section id="create-section">
+    <h1 class="item">Edit {{game?.title}}</h1>
+    <main class="item padded align-center">
+
+        
+        <form class="layout left large" [formGroup]="form" (ngSubmit)="editHandler()">
+
+           <!-- Errors -->
+            <ng-container *ngIf="form.get('title')?.touched">
+                <div class="error-box" *ngIf="form.get('title')?.errors?.['required']">
+                    <p>Title is required!</p>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="form.get('genre')?.touched">
+                <div class="error-box" *ngIf="form.get('genre')?.errors?.['required']">
+                    <p>Genre is required!</p>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="form.get('price')?.touched">
+                <div class="error-box" *ngIf="form.get('price')?.errors?.['required']">
+                    <p>Price is required!</p>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="form.get('imageUrl')?.touched">
+                <div class="error-box" *ngIf="form.get('imageUrl')?.errors?.['required']">
+                    <p>Password is required!</p>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="form.get('description')?.touched">
+                <div class="error-box" *ngIf="form.get('description')?.errors?.['required']">
+                    <p>Description is required!</p>
+                </div>
+            </ng-container>
+           
+
+
+           <!-- Inputs -->
+            <div class="col aligned">
+                <label class="vertical" for="title"><span>Title</span>
+                    <input formControlName="title"
+                     type="text" name="title" placeholder="Grand Theft Auto V">
+                </label>
+
+                <label for="genre"><span>Genre</span>
+                    <input formControlName="genre"
+                    type="text" name="genre" placeholder="Action">
+                </label>
+
+                <label for="price"><span>Price</span>
+                    <input formControlName="price"
+                     type="number" name="price">
+                </label>              
+
+                <label for="imageUrl"><span>Image Url</span>
+                    <input formControlName="imageUrl"
+                     type="text" name="imageUrl"  placeholder="https://">
+                </label>
+            </div>
+
+
+
+            <div class="content pad-med align-center vertical">
+                <label for="description">
+                    <span>Description</span>                  
+                    <textarea formControlName="description" placeholder="Grand Theft Auto (usually abbreviated GTA) is a series of games that incorporate driving and action gameplay styles."
+                    name="description" cols="30" rows="4"></textarea>
+                </label>
+
+
+                <div class="align-center">                    
+                    <button class="action" [disabled]="form.invalid">Edit</button>
+                    <button class="action" (click)="cancelEditMode()">Cancel</button>
+                </div>
+
+            </div>
+            
+
+
+        </form>
+    </main>
+</section>

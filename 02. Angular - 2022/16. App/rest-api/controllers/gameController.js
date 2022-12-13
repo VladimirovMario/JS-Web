@@ -90,8 +90,4 @@ gameController.get('/liked/:userId', async (req, res) => {
     }
 });
 
-
-
-
-
 module.exports = gameController;
