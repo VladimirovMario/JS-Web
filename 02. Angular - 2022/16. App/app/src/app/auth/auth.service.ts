@@ -41,8 +41,7 @@ export class AuthService implements OnDestroy{
     .pipe(tap((user) => this.user$$.next(user)));
   }
 
-  logout(){
-    localStorage.removeItem('token');
+  logout(){    
     return this.httpClient
     .get('/api/user/logout', {})
     .pipe(tap(() => this.user$$.next(null)));
