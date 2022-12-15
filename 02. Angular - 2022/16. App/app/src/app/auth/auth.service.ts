@@ -40,18 +40,7 @@ export class AuthService implements OnDestroy{
     .post<IUser>(`/api/user/login`, {email, password})
     .pipe(tap((user) => this.user$$.next(user)));
   }
-/*
-  login(email: string, password: string): Observable<any> {
-    return this.httpClient.post<{token: string}>('/api/user/login', { email, password})
-      .pipe(
-        map(result => {
-          console.log(JSON.stringify(result.token));          
-          localStorage.setItem('token', JSON.stringify(result.token))
-          return true;
-        })
-    );
-  }
-*/
+
   logout(){
     localStorage.removeItem('token');
     return this.httpClient

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { GameService } from '../game.service';
 import { IGame } from '../../shared/interfaces';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Router } from '@angular/router';
 // import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./game-list.component.scss'],
 })
 export class GameListComponent implements OnInit {
+
   games: IGame[] | null = null;
   game: IGame | null = null;
   message!: string;
@@ -33,10 +34,9 @@ export class GameListComponent implements OnInit {
     private gameService: GameService,
     private authService: AuthService,
     private router: Router
-  ) // private formBuilder: FormBuilder
-  {
-    console.log('User', this.user);
-  }
+    // private formBuilder: FormBuilder
+     )
+  { }
 
   ngOnInit(): void {
     this.gameService.getAll().subscribe({

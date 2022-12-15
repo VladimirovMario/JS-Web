@@ -1,32 +1,34 @@
 const { parseToken } = require("../services/userService");
 
 module.exports = () => (req, res, next) => {
-    
-    const token = req.headers["x-authorization"];
-    if (token) {
+  
+  const token = req.headers["x-authorization"];
+  const bearerHeader = req.headers["authorization"];
+
+  if (bearerHeader !== undefined) {
+    const bearer = bearerHeader.split(` `);
+    if (bearer.length > 1 && bearer[1].includes("null") === false) {
       try {
-        const payload = parseToken(token);
+        const bearerToken = bearer[1];
+        const payload = parseToken(bearerToken);
         req.user = payload;
-        req.token = token;
-        sessionStorage.setItem("token", token);
+        req.token = bearerToken;
       } catch (err) {
         return res.status(401).json({ message: "Invalid authorization token" });
       }
     }
-/*
-  const bearerHeader = req.headers["authorization"];
-  if (bearerHeader) {
+  }
+
+  if (token) {
     try {
-      const bearer = bearerHeader.split(` `);
-      const bearerToken = JSON.parse(bearer[1])["token"];
-      const payload = parseToken(bearerToken);
+      const payload = parseToken(token);
       req.user = payload;
-      req.token = bearerToken;
-      //   console.log(req.headers);
+      req.token = token;
+      // sessionStorage.setItem("token", token);
     } catch (err) {
       return res.status(401).json({ message: "Invalid authorization token" });
     }
   }
-*/
+
   next();
 };

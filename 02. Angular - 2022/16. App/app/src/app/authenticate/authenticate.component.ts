@@ -14,6 +14,9 @@ export class AuthenticateComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    
+    console.log('authenticate.component token',localStorage.getItem('token'));
+
     this.authService.getProfile().subscribe({
       next: (user) => {
         // this.authService.user = user;

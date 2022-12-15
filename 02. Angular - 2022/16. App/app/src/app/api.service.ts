@@ -17,11 +17,11 @@ export class ApiService {
     return this.httpClient.get<IGame[]>(`${apiURL}/game/liked/${userId}`);
   }
 
-  getLatestsGames(limit?: number) {
-    return this.httpClient.get<IGame[]>(`${apiURL}/${limit ? `?limit=${limit}` : ``}`);
-  }
+  // getLatestsGames(limit?: number) {
+  //   return this.httpClient.get<IGame[]>(`${apiURL}/${limit ? `?limit=${limit}` : ``}`);
+  // }
 
-  getById(id: string) {
-    return this.httpClient.get<IGame>(`${apiURL}/game/` + id)
-  }
+  // getById(id: string) {
+  //   return this.httpClient.get<IGame>(`${apiURL}/game/` + id)
+  // }
 }

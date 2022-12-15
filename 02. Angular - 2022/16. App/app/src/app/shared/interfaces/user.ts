@@ -8,4 +8,5 @@ export interface IUser {
   tel: string;
   liked: IGame
   created_at: string;
+  token: string
 }

@@ -15,7 +15,12 @@ const apiURL = environment.apiURL;
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
-  
+
+  // Setting the token!!!
+  get user() {
+    return this.authService.user;
+  }
+
   constructor(
     @Inject(API_ERROR)
     private apiError: BehaviorSubject<Error | null>,
@@ -27,47 +32,49 @@ export class AppInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-   
-    const token: string | any = localStorage.getItem('token');
-  
-    req = req.clone({headers: req.headers.set('Authorization', 'Bearer ' + token) });
-    req = req.clone({headers: req.headers.set('Content-Type', 'application/json') });
-    req = req.clone({headers: req.headers.set('Accept', 'application/json') });
+    // Setting the token!!!
+    // this.user ? localStorage.setItem('token', this.user?.token!) : localStorage.removeItem('token');
+    if (this.user) {
+      localStorage.setItem('token', this.user?.token!);
+    } 
+    // else {
+    //   localStorage.removeItem('token');
+    // }
+    const token: string | null = localStorage.getItem('token');
 
-  
+    req = req.clone({headers: req.headers.set('Authorization', 'Bearer ' + token)});
+    req = req.clone({headers: req.headers.set('Content-Type', 'application/json')});
+    req = req.clone({ headers: req.headers.set('Accept', 'application/json') });
+
     if (req.url.startsWith('/api')) {
-      req = req.clone({
-        url: req.url.replace('/api', apiURL),
-        withCredentials: true,
-        setHeaders: {
-          // 'Content-Type': 'application/json',
-          // Headers: 'x-authorization',
-        },
-      });
+      req = req.clone({url: req.url.replace('/api', apiURL), withCredentials: true});
     }
 
-return next.handle(req).pipe(
-  catchError(err => of(err).pipe( 
-    switchMap((err) => {
-      if (err.status === 401) { return [[err, null]] }
-      return zip([err], this.authService.user$).pipe(take(1))
-    }),
-    switchMap(([err, user]) => {
-      if (err.status === 401) {
-        if (!user) {
-          // this.router.navigate(['/auth/login']);
-          this.router.navigate(['/']);
-        } else {
-          this.router.navigate(['/']);
-        }
-      } else {
-        this.apiError.next(err);
-        this.router.navigate(['/error']);
-      }
-      return throwError(() => err);
-    })
-  ))
-);
+    return next.handle(req).pipe(
+      catchError((err) =>
+        of(err).pipe(
+          switchMap((err) => {
+            if (err.status === 401) {
+              return [[err, null]];
+            }
+            return zip([err], this.authService.user$).pipe(take(1));
+          }),
+          switchMap(([err, user]) => {
+            if (err.status === 401) {
+              if (!user) {
+                this.router.navigate(['/']);
+              } else {
+                this.router.navigate(['/']);
+              }
+            } else {
+              this.apiError.next(err);
+              this.router.navigate(['/error']);
+            }
+            return throwError(() => err);
+          })
+        )
+      )
+    );
   }
 }
 

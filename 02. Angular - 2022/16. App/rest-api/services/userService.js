@@ -54,7 +54,8 @@ async function logout(token) {
 function createToken(user) {
     const payload = {
         _id: user._id,
-        email: user.email
+        email: user.email,
+        username: user.username
     };
 
     return {
