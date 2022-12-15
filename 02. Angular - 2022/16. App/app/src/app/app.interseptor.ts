@@ -37,9 +37,9 @@ export class AppInterceptor implements HttpInterceptor {
     if (this.user) {
       localStorage.setItem('token', this.user?.token!);
     } 
-    // else {
-    //   localStorage.removeItem('token');
-    // }
+    else {
+      localStorage.removeItem('token');
+    }
     const token: string | null = localStorage.getItem('token');
 
     req = req.clone({headers: req.headers.set('Authorization', 'Bearer ' + token)});

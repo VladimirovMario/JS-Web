@@ -34,8 +34,8 @@ export class GameService {
     return this.httpClient.delete<IGame>(`${apiUrl}/game/` + id)
   }
 
-  addGameToFavorites(gameId: string, userId: string) {
-    return this.httpClient.post<IGame>(`${apiUrl}/game/${gameId}/liked/${userId}`, {})
+  addGameToFavorites(gameId: string) {
+    return this.httpClient.post<IGame>(`${apiUrl}/game/liked/${gameId}`, {})
   }
 
 }

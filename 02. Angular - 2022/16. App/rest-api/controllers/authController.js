@@ -51,6 +51,10 @@ authController.post("/login", async (req, res) => {
 
 // TODO make it work
 authController.get('/profile' , async (req, res,) => {  
+  // console.log(req.body);
+  // console.log(req.body.user);
+  // console.log(req.user);
+
   try {    
     const token = await getProfileInfo(req.body.user);
     res.json(token);

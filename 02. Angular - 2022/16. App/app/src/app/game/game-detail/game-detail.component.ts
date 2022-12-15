@@ -57,7 +57,7 @@ export class GameDetailComponent implements OnInit {
           if (this.game?.users.includes(this.user?._id) == false) {
             
             // Making post request to database to add user id
-            this.gameService.addGameToFavorites(this.game._id, this.user._id).subscribe({
+            this.gameService.addGameToFavorites(this.game._id).subscribe({
               next: (_) => {
                 // In case of success redirect to profile to see liked items
                 this.router.navigate(['/auth/profile']);

@@ -14,9 +14,9 @@ const gameSchema = new Schema(
     },
     genre: { type: String, required: true , minlength: [3, 'Description should be a minimum of 3 characters long!']},
     price: { type: String, required: true, type: Number, required: true, min: [0.01, 'Price must be a positive number']},   
-    owner: { type: Types.ObjectId, ref: "User" },
     users: { type: [Types.ObjectId], ref: "User", default: [] },
     usersCount: { type: Number, default: 0 },
+    _ownerId: { type: Types.ObjectId, ref: "User" },
   },
   { timestamps: { createdAt: "created_at" } }
 );

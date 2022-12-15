@@ -4,18 +4,12 @@ async function getAll() {
   return Game.find({});
 }
 
-async function createGame(gameData) {
-  const game = {
-    title: gameData.title,
-    description: gameData.description,
-    imageUrl: gameData.imageUrl,
-    genre: gameData.genre,
-    price: Number(gameData.price),
-  };
+async function createGame(game) {
   return Game.create(game);
 }
 
 async function getById(id) {
+  // TODO fix the problem with invalid ID's 
   return Game.findById(id);
 }
 

@@ -1,54 +1,61 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
 
-
-const bodyParser    = require('body-parser');
-const jwt           = require('jsonwebtoken');
-const expressJWT      = require('express-jwt');
+const bodyParser = require("body-parser");
+const jwt = require("jsonwebtoken");
+const expressJWT = require("express-jwt");
 
 // const cookieParser = require("cookie-parser");
-const  config = require('./middlewares/cors');
+const config = require("./middlewares/cors");
 
-const authController = require('./controllers/authController');
-const dataController = require('./controllers/dataController');
-const trimBody = require('./middlewares/trimBody');
-const session = require('./middlewares/session');
-const gameController = require('./controllers/gameController');
-const homeController = require('./controllers/homeController');
+const authController = require("./controllers/authController");
+const dataController = require("./controllers/dataController");
+const trimBody = require("./middlewares/trimBody");
+const session = require("./middlewares/session");
+const gameController = require("./controllers/gameController");
+const homeController = require("./controllers/homeController");
 
-
-const connectionString = 'mongodb://0.0.0.0:27017/exam-prep-3';
+const connectionString = "mongodb://0.0.0.0:27017/exam-prep-3";
 start();
 
 async function start() {
-    await mongoose.connect(connectionString);
-    console.log('Database connected');
-
-    const app = express();
-
-
-    app.use(bodyParser.json({limit: '10mb', extended: true}));
-    app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
-
-
-    app.use(express.json());
-    // app.use(cookieParser());
-    app.use(cors({
-        origin: config.origin,
-        credentials: true
-    }));
-    app.use(trimBody());
-    app.use(session());
-
-    app.get('/', (req, res) => {
-        res.json({ message: 'REST service operational' });
+  try {
+    await mongoose.connect(connectionString, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
     });
+    console.log("Database connected");
+  } catch (error) {
+    console.error("Error initializing database");
+    console.error(error.message);
+    process.exit(1);
+  }
 
-    app.use('/api/', homeController);
-    app.use('/api/user', authController);
-    app.use('/api/game', gameController);
-    app.use('/api/catalog', dataController);
+  const app = express();
 
-    app.listen(3000, () => console.log('REST service started'));
+  app.use(bodyParser.json({ limit: "10mb", extended: true }));
+  app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
+
+  app.use(express.json());
+  // app.use(cookieParser());
+  app.use(
+    cors({
+      origin: config.origin,
+      credentials: true,
+    })
+  );
+  app.use(trimBody());
+  app.use(session());
+
+  app.get("/", (req, res) => {
+    res.json({ message: "REST service operational" });
+  });
+
+  app.use("/api/", homeController);
+  app.use("/api/user", authController);
+  app.use("/api/game", gameController);
+  app.use("/api/catalog", dataController);
+
+  app.listen(3000, () => console.log("REST service started"));
 }
