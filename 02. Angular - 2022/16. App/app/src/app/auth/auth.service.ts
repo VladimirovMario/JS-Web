@@ -19,6 +19,7 @@ export class AuthService implements OnDestroy{
   user: IUser | null = null;
 
   get isLoggedIn() {
+    // return localStorage.getItem('token');
     return this.user !== null;
   }
 

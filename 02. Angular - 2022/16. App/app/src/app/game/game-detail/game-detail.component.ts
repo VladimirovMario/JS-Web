@@ -10,8 +10,10 @@ import { GameService } from '../game.service';
   styleUrls: ['./game-detail.component.scss'],
 })
 export class GameDetailComponent implements OnInit {
+
   get isLoggedIn() {
-    return this.authService.isLoggedIn;
+    return localStorage.getItem('token');
+    // return this.authService.isLoggedIn;
   }
 
   get user() {

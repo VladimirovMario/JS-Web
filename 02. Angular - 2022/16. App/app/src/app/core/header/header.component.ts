@@ -10,7 +10,8 @@ import { IUser } from 'src/app/shared/interfaces';
 export class HeaderComponent implements OnInit {
   
   get isLoggedIn () {
-    return this.authService.isLoggedIn;
+    return localStorage.getItem('token');
+    // return this.authService.isLoggedIn;
    }
   
    get user () {

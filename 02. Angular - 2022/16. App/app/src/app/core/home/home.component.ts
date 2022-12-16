@@ -13,7 +13,8 @@ import { HomeService } from '../home.service';
 export class HomeComponent implements OnInit {
 
   get isLoggedIn(){
-    return this.authService.isLoggedIn
+    return localStorage.getItem('token');
+    // return this.authService.isLoggedIn
   }
 
   games: IGame[] | null = null;
