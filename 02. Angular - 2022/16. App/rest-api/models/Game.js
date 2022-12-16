@@ -24,15 +24,3 @@ const gameSchema = new Schema(
 const Game = model("Game", gameSchema);
 
 module.exports = Game;
-
-/**Game
-[x] Title - string (required),
-[x] Keyword - string (required),
-[x] Location - string (required),
-[x] Date of creation - string (required),
-[x] Image - string (required),
-[x] Description - string (required),
-[x] Author - object Id (a reference to the User model),
-[x] Votes on post - a collection of Users (a reference to the User model),
-[x] Rating of post - number, default value 0
- */

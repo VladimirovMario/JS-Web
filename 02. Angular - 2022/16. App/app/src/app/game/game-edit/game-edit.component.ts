@@ -51,7 +51,7 @@ export class GameEditComponent implements OnInit {
     if (this.form.invalid) { return; }
     const { title, genre, price, imageUrl, description } = this.form.value;
 
-    if (Number(price) <= 0.01) {
+    if (Number(price) <= 0.01) {     
       console.error('Price must be a positive number!');
     }
 

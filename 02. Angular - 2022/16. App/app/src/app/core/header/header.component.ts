@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
-import { IUser } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-header',
@@ -9,13 +8,14 @@ import { IUser } from 'src/app/shared/interfaces';
 })
 export class HeaderComponent implements OnInit {
   
-  get isLoggedIn () {
-    return localStorage.getItem('token');
-    // return this.authService.isLoggedIn;
-   }
-  
    get user () {
      return this.authService.user
+   }
+
+   isLoggedIn = false
+
+   ngDoCheck(): void {
+     this.isLoggedIn = this.authService.isLoggedIn;
    }
 
    

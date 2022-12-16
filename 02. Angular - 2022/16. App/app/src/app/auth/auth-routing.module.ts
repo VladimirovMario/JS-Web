@@ -1,6 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
 
-// TODO release the guards
 import { AuthActivate } from '../shared/guards/auth.activate';
 
 import { LoginComponent } from './login/login.component';

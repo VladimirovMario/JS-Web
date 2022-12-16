@@ -1,5 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 
+import { AuthActivate } from '../shared/guards/auth.activate';
+
 import { MainComponent } from './main/main.component';
 import { NewGameComponent } from './new-game/new-game.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
@@ -14,17 +16,25 @@ export const routes: Routes = [
   {
     path: 'game/create',
     component: NewGameComponent,
-    title: 'Create Game' 
+    canActivate: [AuthActivate],
+    title: 'Create Game',
+    data: {
+      loginRequired: true,
+    },
   },
   {
     path: 'game/detail/:id',
     component: GameDetailComponent,
-    title: 'Details'
+    title: 'Details',
   },
   {
     path: 'game/detail/edit/:id',
     component: GameEditComponent,
-    title: 'Edit'
+    canActivate: [AuthActivate],
+    title: 'Edit',
+    data: {
+      loginRequired: true,
+    },
   },
 ];
 

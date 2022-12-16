@@ -16,9 +16,4 @@ export class HomeService {
     getLatestsGames(limit?: number) {
     return this.httpClient.get<IGame[]>(`${apiURL}/${limit ? `?limit=${limit}` : ``}`);
   }
-
-  getById(id: string) {
-    return this.httpClient.get<IGame>(`${apiURL}/game/` + id)
-  }
-
 }

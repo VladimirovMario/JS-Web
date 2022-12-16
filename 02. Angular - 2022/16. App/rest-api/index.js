@@ -6,7 +6,6 @@ const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const expressJWT = require("express-jwt");
 
-// const cookieParser = require("cookie-parser");
 const config = require("./middlewares/cors");
 
 const authController = require("./controllers/authController");
@@ -38,13 +37,9 @@ async function start() {
   app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
 
   app.use(express.json());
-  // app.use(cookieParser());
-  app.use(
-    cors({
-      origin: config.origin,
-      credentials: true,
-    })
-  );
+  
+  app.use(cors({origin: config.origin, credentials: true}));
+  
   app.use(trimBody());
   app.use(session());
 

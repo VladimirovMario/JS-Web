@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GameService } from '../game.service';
@@ -8,18 +8,18 @@ import { GameService } from '../game.service';
   templateUrl: './new-game.component.html',
   styleUrls: ['./new-game.component.scss'],
 })
-export class NewGameComponent implements OnInit {
+export class NewGameComponent {
 
   constructor(
     private gameService: GameService,
-     private router: Router
-     ) {}
-
-  ngOnInit(): void {}
+    private router: Router
+    ) {}
 
   createHandler(form: NgForm) {
-    if (form.invalid) { return; }
-   
+    if (form.invalid) {
+      return;
+    }
+
     const { title, genre, price, imageUrl, description } = form.value;
 
     if (Number(price) <= 0) {

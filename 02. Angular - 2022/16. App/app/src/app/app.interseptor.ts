@@ -1,11 +1,11 @@
 import {HttpEvent, HttpHandler, HttpInterceptor,
-   HttpRequest,HttpResponse,HTTP_INTERCEPTORS} from '@angular/common/http';
+   HttpRequest,HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { Inject, Injectable, Provider } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { BehaviorSubject, catchError, Observable, of,
-  switchMap, take, tap, throwError, withLatestFrom, zip} from 'rxjs';
+  switchMap, take, throwError, zip} from 'rxjs';
 
 import { environment } from '../environments/environment';
 import { AuthService } from './auth/auth.service';
@@ -32,22 +32,15 @@ export class AppInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+
     // Setting the token!!!
-    // this.user ? localStorage.setItem('token', this.user?.token!) : localStorage.removeItem('token');
-    if (this.user) {
-      localStorage.setItem('token', this.user?.token!);
-    } 
-    else {
-      localStorage.removeItem('token');
-    }
-
-    // console.log('User:', this.user);
-
+    this.user ? localStorage.setItem('token', this.user?.token!) : localStorage.removeItem('token');
     const token: string | null = localStorage.getItem('token');
 
     req = req.clone({headers: req.headers.set('Authorization', 'Bearer ' + token)});
     req = req.clone({headers: req.headers.set('Content-Type', 'application/json')});
     req = req.clone({ headers: req.headers.set('Accept', 'application/json') });
+
 
     if (req.url.startsWith('/api')) {
       req = req.clone({url: req.url.replace('/api', apiURL), withCredentials: true});

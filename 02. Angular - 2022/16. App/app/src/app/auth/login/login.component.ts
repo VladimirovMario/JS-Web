@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -8,7 +8,7 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss', '../register/register.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   form = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -21,8 +21,6 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
-
   loginHandler() {
     if (this.form.invalid) { return; }
     
@@ -31,7 +29,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(email!, password!).subscribe({
       next: (user) => {
         this.authService.user = user;
-        // TODO 
         this.router.navigate(['/game/catalog']);
       },
       error: (err) => {

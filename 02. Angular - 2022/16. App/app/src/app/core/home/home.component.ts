@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/auth/auth.service';
 
 import { IGame } from 'src/app/shared/interfaces';
 import { HomeService } from '../home.service';
@@ -12,26 +10,18 @@ import { HomeService } from '../home.service';
 })
 export class HomeComponent implements OnInit {
 
-  get isLoggedIn(){
+  get isLoggedIn() {
     return localStorage.getItem('token');
-    // return this.authService.isLoggedIn
   }
 
   games: IGame[] | null = null;
-
   limit: number = 3;
 
-  constructor(
-    private homeService: HomeService,
-    private authService: AuthService,
-    private activateRoute: ActivatedRoute,
-    private router: Router
-  ) {}
+  constructor(private homeService: HomeService) {}
 
   ngOnInit(): void {
     this.homeService.getLatestsGames(this.limit).subscribe({
-      next: (value) => {
-        // this.isLoading = false;
+      next: (value) => {      
         this.games = value;
       },
       error: (err) => {

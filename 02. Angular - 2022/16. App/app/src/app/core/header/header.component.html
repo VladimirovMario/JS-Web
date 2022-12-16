@@ -10,7 +10,7 @@
 
 
     <ng-container *ngIf="isLoggedIn">
-        <span class="item">Welcome, {{user?.email}}</span>
+        <span class="item">Welcome, {{user?.username | titlecase}}</span>
     </ng-container>
 
 

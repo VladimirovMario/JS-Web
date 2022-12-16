@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -8,7 +8,7 @@ import { AuthService } from '../auth.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
   form = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -26,9 +26,7 @@ export class RegisterComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
-
-  registerHandler() {
+   registerHandler() {
     if (this.form.invalid) { return; }
 
     const { email, username, tel, password, rePassword } = this.form.value;

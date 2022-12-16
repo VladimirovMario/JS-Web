@@ -2,23 +2,20 @@
     <h1 class="item">Games for Playstation 4</h1>
 
     <!-- SEARCH FORM -->
-    <main class="item pad-large align-center">
+    <!-- <main class="item pad-large align-center">
         <form class="layout left large" method="get">
             <div class="col aligned">
                 <label>
-                    <span>Terms:</span>
-                    
-                        <input class="form-control search-game" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for a game by id or title or description">
-                        <!-- <input type="search" name="search" placeholder="What you will search?" value=""> -->
-                 
+                    <span>Terms:</span>                    
+                        <input class="form-control search-game" type="text" name="search" autocomplete="off" placeholder="&#61442;  Start searching for...">                                     
                 </label>
             </div>
-
             <label> 
                 <button class="action">Search</button>
             </label>
         </form>
-    </main>
+    </main> -->
+
 
 
     <app-loader *ngIf="isLoading"></app-loader>
@@ -26,11 +23,7 @@
 
 
         <!-- Catalog Card  -->
-       
-       
-        <!-- <ul *ngFor="let game of games | filter:searchText" class="catalog cards"  > -->
-        <ul *ngFor="let game of games " class="catalog cards"  >
-
+            <ul *ngFor="let game of games " class="catalog cards">
             <li *ngIf="games?.length" class="item">
                 <header class="pad-med">
                     <h2>{{game.title}}</h2>
@@ -45,7 +38,10 @@
                         <p>Price: {{game.price}}€</p>
                     </strong>
                     <a class="action" routerLink="/game/detail/{{game._id}}">Details</a>
-                    <button class="action" (click)="addToFavorite(game._id)">Favorites</button>
+
+                    <ng-container *ngIf="isLoggedIn">
+                        <button class="action" (click)="addToFavorite(game._id)">Favorites</button>
+                    </ng-container>
                 </footer>
             </li>
         </ul>

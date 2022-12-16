@@ -6,12 +6,8 @@ const userSchema = new Schema({
     hashedPassword: { type: String, required: true, minlength: [3, 'Password REST'] },
     username: { type: String, required: true, unique: true, minlength: [3, 'Username REST']},
     tel: {type: String , default: ''},
-    liked: { type: [ObjectId], default: [], ref: "Game" },  
-    
-    // posts: { type: [ObjectId], default: [], ref: "Post" }
-
+    liked: { type: [ObjectId], default: [], ref: "Game" },
 }, { timestamps: { createdAt: 'created_at' } });
-
 
 
 userSchema.index({ email: 1}, {

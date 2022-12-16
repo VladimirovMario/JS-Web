@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
-import { catchError, filter, map, Observable, Subscription, tap } from 'rxjs';
+import { catchError, filter, Subscription, tap } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { IUser } from '../shared/interfaces';
 
@@ -42,7 +42,7 @@ export class AuthService implements OnDestroy{
     .pipe(tap((user) => this.user$$.next(user)));
   }
 
-  logout(){    
+  logout(){
     return this.httpClient
     .get('/api/user/logout', {})
     .pipe(tap(() => this.user$$.next(null)));
