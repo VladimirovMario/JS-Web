@@ -1,0 +1,10 @@
+<p id="title">{{title}}</p>
+
+<!-- Reference other elements  #titleInput refers to the input element-->
+<input #titleInput type="text">
+
+<button (click)="changeTitleHandler($event, titleInput.value)">Change title</button>
+
+<app-list></app-list>
+
+
