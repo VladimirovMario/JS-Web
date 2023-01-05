@@ -1,5 +1,7 @@
 # ArticlesApp
 
+![screenshot_article](https://user-images.githubusercontent.com/103949296/210792175-2f4e5e2c-0596-45be-af6c-b9b3af674d65.png)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
 
 ## Development server
