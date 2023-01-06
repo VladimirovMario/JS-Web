@@ -1,0 +1,9 @@
+<div *ngIf="isLoading">Loading...</div>
+
+
+
+<div *ngIf="!isLoading">
+    <ng-container *ngFor="let user of users">
+        <div>user: {{user.name}} - address: {{user.address.city}}</div>
+    </ng-container>
+</div>
