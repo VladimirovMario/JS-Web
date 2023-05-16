@@ -1,0 +1,5 @@
+demo.txt is file
+fs-demo.js is file
+index.js is file
+src is directory
+summary.txt is file
