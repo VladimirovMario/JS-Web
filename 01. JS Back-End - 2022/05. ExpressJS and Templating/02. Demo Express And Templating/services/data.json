@@ -1,0 +1,27 @@
+[
+  {
+    "id": "asdf1235",
+    "name": "Oil filter",
+    "price": 35.55
+  },
+  {
+    "id": "asdf1236",
+    "name": "Air filter",
+    "price": 22.21
+  },
+  {
+    "id": "asdf1237",
+    "name": "Engine oil",
+    "price": 55.32
+  },
+  {
+    "id": "asdf2686",
+    "name": "Fuel Filter",
+    "price": 66
+  },
+  {
+    "id": "asdf4254",
+    "name": "Cabin Filter",
+    "price": 33
+  }
+]

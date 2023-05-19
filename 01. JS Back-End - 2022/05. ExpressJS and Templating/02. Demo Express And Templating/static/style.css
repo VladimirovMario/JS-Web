@@ -1,0 +1,50 @@
+body {
+  background-color: #daebf4;
+}
+
+#content {
+  background-color: white;
+  width: 980px;
+  margin: auto;
+}
+
+nav {
+    background-color: #003044;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav a {
+    text-decoration: none;
+    background-color:#b6d3e3;
+    padding: 4px 8px;
+    color: white;
+}
+
+nav a:hover {
+    background-color: #3a6275;
+}
+
+#main {
+    padding: 32px;
+}
+
+h1 {
+    color: #004154;
+}
+
+label{
+    display: block;
+    margin: 8px;
+}
+
+label span {
+    display: inline-block;
+    width: 60px;
+}
