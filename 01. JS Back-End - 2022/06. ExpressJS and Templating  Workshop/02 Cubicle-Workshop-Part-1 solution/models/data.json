@@ -1,0 +1,65 @@
+[
+  {
+    "id": 50843,
+    "name": "Gan356 Air SM",
+    "imgUrl": "https://ae01.alicdn.com/kf/HTB1CSddXRxRMKJjy0Fdq6yifFXa6/Gan-356-Air-SM-3x3-Black-Magic-cube-GAN-Air-SM-Magnetic-3x3x3-Speed-cube-gans.jpg",
+    "description": " Magnets in AirSM will not drop, and their positions will be more precise with the Magnets-Snap-On design. With the use of 3mm*2mm magnets, the handfeel will be more stable and more comfortable. P.S. This design is brand new for the AirSM.",
+    "difficulty": 3
+  },
+  {
+    "id": 50844,
+    "name": "Eco-Dark",
+    "imgUrl": "https://thingsidesire.com/wp-content/uploads/2018/06/Eco-Dark-Rubik%E2%80%99s-Cube2.jpg",
+    "description": " Magnets in AirSM will not drop, and their positions will be more precise with the Magnets-Snap-On design. With the use of 3mm*2mm magnets, the handfeel will be more stable and more comfortable. P.S. This design is brand new for the AirSM.",
+    "difficulty": 6
+  },
+  {
+    "id": 50845,
+    "name": "Pyraminx",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/61izOzq%2BBAL._SY355_.jpg",
+    "description": " Magnets in AirSM will not drop, and their positions will be more precise with the Magnets-Snap-On design. With the use of 3mm*2mm magnets, the handfeel will be more stable and more comfortable. P.S. This design is brand new for the AirSM.",
+    "difficulty": 1
+  },
+  {
+    "id": 50846,
+    "name": "Megaminx",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/61HpQqVQ37L._SY355_.jpg",
+    "description": " Magnets in AirSM will not drop, and their positions will be more precise with the Magnets-Snap-On design. With the use of 3mm*2mm magnets, the handfeel will be more stable and more comfortable. P.S. This design is brand new for the AirSM.",
+    "difficulty": 3
+  },
+  {
+    "id": 44206,
+    "name": "Sunny Hill",
+    "imgUrl": "https://i.pinimg.com/originals/a2/ed/ef/a2edef419928157b9b2e75116ac97cde.jpg",
+    "description": "The mirror cube",
+    "difficulty": 4
+  },
+  {
+    "id": 36373,
+    "name": "Mathematics Rubik's Cube - black",
+    "imgUrl": "https://m.media-amazon.com/images/I/71Tv7DGjdAL._AC_SL1076_.jpg",
+    "description": "FEATURES Formulas featuring trigonometry, linear equations, differentiation, energies, and more! Gaps wide enough that allows you to add lubricant for smoother play.",
+    "difficulty": 1
+  },
+  {
+    "id": 66355,
+    "name": "Y.L. DOYMX Mini Cube",
+    "imgUrl": "https://m.media-amazon.com/images/I/71dvkBcASEL._AC_SL1500_.jpg",
+    "description": "Cube Lab 1x1x1cm Smallest Cube, Smooth Magic Cube Puzzle for Kids and Adults",
+    "difficulty": 4
+  },
+  {
+    "id": 27492,
+    "name": "Ganowo Megaminx Speed",
+    "imgUrl": "https://m.media-amazon.com/images/I/71QYDW1-0uL._AC_SL1500_.jpg",
+    "description": "Speed Cube is a fun brain teasers toy. It can promote your child's imagination and creativity, release the working pressure of the adults. It's a great fidget puzzle cube toys for kids adults teens boys.",
+    "difficulty": 6
+  },
+  {
+    "id": 45379,
+    "name": "Test",
+    "imgUrl": "https://m.media-amazon.com/images/I/71dvkBcASEL._AC_SL1500_.jpg",
+    "description": "{{description}}",
+    "difficulty": 1
+  }
+]
