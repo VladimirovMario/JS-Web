@@ -1,0 +1,50 @@
+<section id="catalog-section">
+
+    {{#with room}}
+    <h1 class="item">{{name}}</h1>
+
+    <div class="item padded">
+        <main class="layout right large">
+
+            <div class="col">
+                <img src="{{imgUrl}}" alt="image.png" class="img-large">
+            </div>
+
+            <div class="content pad-med">
+                <p>City: {{city}}</p>
+                <p>{{description}}</p>
+
+                <div class="align-center">
+                    <div>
+                        <p>Price per night: {{price}}€</p>
+                    </div>
+
+                    {{#if facilities}}
+                    <ul class="catalog">
+                        {{#each facilities}}
+                        <li>
+                            {{label}} <img class="facility-icon" src="{{iconUrl}}" alt="facility-icon">
+                        </li>
+                        {{/each}}
+                    </ul>
+                    {{/if}}
+
+                </div>
+                <div class="align-center">
+                    <a class="action" href="/facility/{{_id}}/decorateRoom">Edit Facilities</a>
+                </div>
+
+            </div>
+        </main>
+        <footer>Listed by (TODO add owner)</footer>
+    </div>
+    {{/with}}
+
+
+
+
+
+
+
+
+</section>

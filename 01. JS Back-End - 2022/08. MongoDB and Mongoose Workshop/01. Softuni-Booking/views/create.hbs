@@ -1,0 +1,42 @@
+<section id="create-section">
+
+    <h1 class="item">New Accommodation</h1>
+
+    <main class="item padded align-center">
+
+        <form class="layout left large" action="/create" method="post">
+
+            {{#if error}}
+            <div class="error-box">
+                {{#each error}}
+                {{!-- If we have strings. We can use this --}}
+                <p>{{this}}</p>
+                {{/each}}
+            </div>
+            {{/if}}
+
+            <div class="col aligned">
+                <label class="vertical" for=""><span>City</span><input type="text" name="city"></label>
+                <label for=""><span>Name</span><input type="text" name="name"></label>
+                <label for=""><span>Beds</span><input type="number" name="beds"></label>
+                <label for=""><span>Price per night</span><input type="number" name="price"></label>
+                <label for=""><span>Image Url</span><input type="text" name="imgUrl"></label>
+            </div>
+
+
+
+            <div class="content pad-med align-center vertical">
+                <label for="">
+                    <span>Description</span>
+                    <textarea name="description" cols="30" rows="4"></textarea>
+                </label>
+
+                <div class="align-center">
+                    <input class="action" type="submit" value="Create Accommodation">
+                </div>
+            </div>
+
+
+        </form>
+    </main>
+</section>
