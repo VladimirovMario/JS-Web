@@ -1,0 +1,19 @@
+[
+  {
+    "username": "Peter",
+    "hashedPassword": "$2b$10$RlcqP/F3VTv1l5RZZciU8O.weQQRbxfHujU5a00iXg6lIintZx.4y",
+    "failedAttempts": 0,
+    "role": [
+      "user"
+    ]
+  },
+  {
+    "username": "John",
+    "hashedPassword": "$2b$10$aVww9vILyKZ4VWNHf7266.I6dpNHuE/6mgoKGdwAiGoAIyhA3nwmW",
+    "failedAttempts": 0,
+    "role": [
+      "user",
+      "admin"
+    ]
+  }
+]
