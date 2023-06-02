@@ -1,0 +1,45 @@
+<section id="create-section">
+
+    <h1 class="item">Delete Accommodation</h1>
+
+    <main class="item padded align-center">
+
+        <form class="layout left large" action="/room/{{room._id}}/delete" method="post">
+
+            {{#if error}}
+            <div class="error-box">
+                {{#each error}}
+                {{!-- If we have strings. We can use this --}}
+                <p>{{this}}</p>
+                {{/each}}
+            </div>
+            {{/if}}
+
+
+            {{#with room}}
+            <div class="col aligned">
+                <label class="vertical" for=""><span>City</span><input type="text" name="city" value="{{city}}" disabled></label>
+                <label for=""><span>Name</span><input type="text" name="name" value="{{name}}" disabled></label>
+                <label for=""><span>Beds</span><input type="number" name="beds" value="{{beds}}" disabled></label>
+                <label for=""><span>Price per night</span><input type="number" name="price" value="{{price}}" disabled></label>
+                <label for=""><span>Image Url</span><input type="text" name="imgUrl" value="{{imgUrl}}" disabled></label>
+            </div>
+
+
+
+            <div class="content pad-med align-center vertical">
+                <label for="">
+                    <span>Description</span>
+                    {{!-- In textarea adding value like text content --}}
+                    <textarea name="description" cols="30" rows="4" disabled >{{description}}</textarea>
+                </label>
+                <div class="align-center">
+                    <input class="action" type="submit" value="Confirm Delete">
+                </div>
+            </div>
+            {{/with}}
+
+
+        </form>
+    </main>
+</section>
