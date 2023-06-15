@@ -1,0 +1,22 @@
+<section id="edit-container">
+    <div class="edit-container-info">
+        <h1>Edit Blog</h1>
+        <form action="/catalog/{{body._id}}/edit" method="post">
+            <label>Title:</label>
+            <input name="title"  type="text" id="name" value="{{body.title}}">
+
+            <label>Image:</label>
+            <input name="imageUrl" type="text" id="image"
+                value="{{body.imageUrl}}">
+
+            <label>Content:</label>
+            <textarea id="content"
+                name="content">{{body.content}}</textarea>
+
+            <label>Blog Category:</label>
+            <input name="blog" type="text" id="catelory" value="{{body.blog}}">
+
+            <input type="submit" id="btn" value="EDIT">
+        </form>
+    </div>
+</section>
