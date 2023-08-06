@@ -1,41 +1,43 @@
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 
-const jwtSecret = "Secret for exam :)";
-
+const jwtSecret = process.env.JWT_SECRET || 'Secret for wildlife :)';
 
 async function register(username, lastName, email, password) {
-
-  const existing = await User.findOne({username}).collation({locale: 'en', strength: 2});
+  const existing = await User.findOne({ username }).collation({
+    locale: 'en',
+    strength: 2,
+  });
 
   if (existing) {
-    throw new Error("Username is taken");
+    throw new Error('Username is taken');
   }
- 
+
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const user = await User.create({
     username,
     lastName,
     email,
-    hashedPassword
-  })
+    hashedPassword,
+  });
 
   const token = createSession(user);
-  return token;  
+  return token;
 }
 
-
 async function login(email, password) {
-  
-  const user = await User.findOne({email}).collation({locale: 'en', strength : 2});
+  const user = await User.findOne({ email }).collation({
+    locale: 'en',
+    strength: 2,
+  });
   // We can use: .collation({locale: 'en', strength: 2})
   // If we have made index.
   // Otherwise we use regex.
   // const user = await User.findOne({username: {$regex: new RegExp(username), $options: 'i'}});
   if (!user) {
-    throw new Error('Incorrect email or password')
+    throw new Error('Incorrect email or password');
   }
 
   const match = await bcrypt.compare(password, user.hashedPassword);
@@ -50,17 +52,16 @@ async function login(email, password) {
   return token;
 }
 
-
 function createSession(user) {
   // View model
-    const payload = {
-        _id: user._id,
-        username: user.username,
-        email: user.email
-    }
+  const payload = {
+    _id: user._id,
+    username: user.username,
+    email: user.email,
+  };
 
-    const token = jwt.sign(payload, jwtSecret, {expiresIn: '1d'});
-    return token;
+  const token = jwt.sign(payload, jwtSecret, { expiresIn: '1d' });
+  return token;
 }
 
 function verifyToken(token) {
